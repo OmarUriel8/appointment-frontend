@@ -29,10 +29,8 @@ export const getServicePagination = async ({
 	if (query) {
 		params.append('serviceName', query);
 	}
-	console.log(`${baseUrl}/service?${params.toString()}`);
-	const response = await fetch(`${baseUrl}/service?${params.toString()}`, {
-		cache: 'no-store',
-	});
+
+	const response = await fetch(`${baseUrl}/service?${params.toString()}`);
 
 	if (!response.ok) {
 		return {
@@ -43,7 +41,7 @@ export const getServicePagination = async ({
 	}
 
 	const { services, ...rest }: ServicesResponse = await response.json();
-	console.log(services);
+
 	const arraySerice: Service[] = services.map(
 		({ images, durationMinutes, ...service }) => ({
 			...service,

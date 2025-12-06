@@ -1,11 +1,14 @@
-import { getServicePagination } from '@/actions';
+export const revalidate = 604800; // 7 dias
+
+import { getServicePagination, getTestimonials } from '@/actions';
 import { Hero, ServiceCard, ServiceGrid } from '@/components';
 import { titleFont } from '@/config/font';
-import { benefits, howFuntion, testimonials } from '@/config/information.data';
+import { benefits, howFuntion } from '@/config/information.data';
 import { cn } from '@/lib/utils';
 
 export default async function HomePage() {
 	const { services } = await getServicePagination({ page: 1, limit: 3, query: '' });
+	const arrayTestimonials = await getTestimonials(3);
 
 	return (
 		<>
@@ -52,12 +55,12 @@ export default async function HomePage() {
 				<h2 className="text-3xl font-bold text-center mb-12">Testimonios</h2>
 
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-					{testimonials.map(({ comment, id, name }) => (
+					{arrayTestimonials.map(({ comments, id, name }) => (
 						<div
 							key={id}
 							className="p-6 rounded-xl border bg-card shadow-sm hover:shadow-md transition"
 						>
-							<p className="text-muted-foreground italic mb-4">“{comment}”</p>
+							<p className="text-muted-foreground italic mb-4">“{comments}”</p>
 							<p className="font-semibold text-foreground">— {name}</p>
 						</div>
 					))}

@@ -1,3 +1,5 @@
+import { Testimonial } from '@/interfaces';
+
 export const benefits = [
 	{
 		id: 1,
@@ -37,20 +39,23 @@ export const howFuntion = [
 	},
 ];
 
-export const testimonials = [
+export const testimonialsMook: Testimonial[] = [
 	{
-		id: 1,
+		id: '1',
 		name: 'Daniela G.',
-		comment: 'El proceso para agendar fue rapidísimo. ¡Excelente servicio!',
+		comments: 'El proceso para agendar fue rapidísimo. ¡Excelente servicio!',
+		score: 4,
 	},
 	{
-		id: 2,
+		id: '2',
 		name: 'Ricardo M.',
-		comment: 'Me encantó que recibí recordatorio antes de mi cita. Muy útil.',
+		comments: 'Me encantó que recibí recordatorio antes de mi cita. Muy útil.',
+		score: 4.3,
 	},
 	{
-		id: 3,
+		id: '3',
 		name: 'Sofía L.',
-		comment: 'La atención y la facilidad para reservar lo hacen mi plataforma favorita.',
+		comments: 'La atención y la facilidad para reservar lo hacen mi plataforma favorita.',
+		score: 4.5,
 	},
 ];

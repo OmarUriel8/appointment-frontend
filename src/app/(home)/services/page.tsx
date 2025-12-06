@@ -15,7 +15,7 @@ export default async function ServicePage({ searchParams }: Props) {
 		: undefined;
 	const query = (await searchParams).query ?? undefined;
 
-	const { totalPages, total, services } = await getServicePagination({
+	const { totalPages, services } = await getServicePagination({
 		page: page,
 		limit: limit,
 		query: query,
