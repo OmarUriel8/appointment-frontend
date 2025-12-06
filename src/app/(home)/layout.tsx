@@ -1,5 +1,6 @@
 import { Footer, Navbar } from '@/components';
 import { Metadata } from 'next';
+import { BackgroundGradient } from '../../components/ui/background/BackgroundGradient';
 
 export const metadata: Metadata = {
 	title: 'Prueba',
@@ -8,9 +9,10 @@ export const metadata: Metadata = {
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="min-h-screen bg-background w-full">
+		<div className="relative min-h-screen overflow-hidden bg-background">
+			<BackgroundGradient />
 			<Navbar />
-			<main className="container mx-auto px-4 py-8 mb-40">{children}</main>
+			<main className="relative container mx-auto px-4 py-8 mb-40">{children}</main>
 
 			<Footer />
 		</div>

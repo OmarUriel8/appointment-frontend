@@ -1,3 +1,4 @@
+'use server';
 import { Testimonial } from '@/interfaces';
 import { baseUrl } from './api.config';
 import { testimonialsMook } from '@/config/information.data';

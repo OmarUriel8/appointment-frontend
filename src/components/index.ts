@@ -17,3 +17,4 @@ export * from './ui/pagination/Pagination';
 export * from './service/ServiceGrid';
 export * from './ui/hero/Hero';
 export * from './service/ServiceSearchInput';
+export * from './ui/background/BackgroundGradient';

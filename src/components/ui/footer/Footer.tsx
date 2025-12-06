@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const Footer = () => {
 	return (
-		<div className="flex w-full justify-center text-xs mb-10">
+		<div className="relative flex w-full justify-center text-xs mb-10">
 			<Link href="/">
 				<span className={titleFont.className}>Aura</span>
 				<span className="text-primary">Studio</span>

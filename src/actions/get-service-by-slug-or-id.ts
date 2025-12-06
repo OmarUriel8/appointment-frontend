@@ -1,3 +1,5 @@
+'use server';
+
 import { ApiService, Service } from '@/interfaces';
 import { baseUrl } from './api.config';
 

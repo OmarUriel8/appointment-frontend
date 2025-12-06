@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components';
+import { SessionProvider } from 'next-auth/react';
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -30,7 +31,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					{children}
+					<SessionProvider>{children}</SessionProvider>
 				</ThemeProvider>
 			</body>
 		</html>
