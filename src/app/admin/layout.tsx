@@ -1,8 +1,10 @@
 import { AdminSidebar, AdminTopbar } from '@/components';
+import { Toaster } from 'sonner';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="flex h-screen overflow-hidden">
+			<Toaster position="top-right" richColors closeButton />
 			<AdminSidebar />
 			<div className="flex flex-1 flex-col overflow-hidden">
 				<AdminTopbar />

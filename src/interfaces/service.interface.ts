@@ -38,4 +38,5 @@ export interface Service {
 	images: string[];
 	tags: string[];
 	slug?: string;
+	isActive: boolean;
 }
