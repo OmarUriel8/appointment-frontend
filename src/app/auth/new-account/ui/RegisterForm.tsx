@@ -65,6 +65,7 @@ export const RegisterForm = () => {
 						<Label htmlFor="name">Nombre completo</Label>
 						<Input
 							type="text"
+							id="name"
 							placeholder="Jhon Due"
 							{...register('name', { required: true })}
 						/>
@@ -78,6 +79,7 @@ export const RegisterForm = () => {
 						<Label htmlFor="email">Email</Label>
 						<Input
 							type="email"
+							id="email"
 							placeholder="correo@example.com"
 							{...register('email', { required: true })}
 						/>

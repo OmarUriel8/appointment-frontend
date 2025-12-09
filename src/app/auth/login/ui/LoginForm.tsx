@@ -4,7 +4,6 @@ import {
 	Button,
 	Card,
 	CardContent,
-	CardDescription,
 	CardHeader,
 	CardTitle,
 	Input,
@@ -14,6 +13,7 @@ import { titleFont } from '@/config/font';
 import { LogIn, MessageSquareWarning } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -23,6 +23,9 @@ interface InputForm {
 }
 
 export const LoginForm = () => {
+	const searchParams = useSearchParams();
+	const redirectTo = searchParams.get('redirectTo') || '/';
+
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -44,14 +47,14 @@ export const LoginForm = () => {
 		});
 
 		if (res.error) {
-			setErrorMessage('Credenciales incorrectas');
+			setErrorMessage(res.code!);
 
 			setLoading(false);
 			return;
 		}
 
 		// hacer registro y luego el login
-		window.location.replace('/');
+		window.location.replace(redirectTo || '/');
 	};
 
 	return (
@@ -69,6 +72,7 @@ export const LoginForm = () => {
 					<div className="space-y-2">
 						<Label htmlFor="email">Email</Label>
 						<Input
+							id="email"
 							type="email"
 							placeholder="correo@example.com"
 							{...register('email', { required: true })}
