@@ -3,6 +3,14 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { login } from './actions';
 
+class InvalidLoginError extends CredentialsSignin {
+	code = '';
+	constructor(code: string) {
+		super();
+		this.code = code;
+	}
+}
+
 export const { auth, handlers, signIn, signOut } = NextAuth({
 	// debug: true,
 	providers: [
@@ -28,7 +36,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
 					return user;
 				} catch (err: any) {
-					throw new Error(err.message);
+					throw new InvalidLoginError(err.message);
 				}
 			},
 		}),
