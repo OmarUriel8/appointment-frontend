@@ -5,13 +5,33 @@ import {
 	CardHeader,
 	CardTitle,
 	DashboardTitle,
+	Pagination,
 } from '@/components';
-import { TableUsers } from './ui/TableUsers';
+import { TableUser } from './ui/TableUser';
 import { Plus } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { getUsers } from '@/actions';
 
-export default function UserPage() {
+interface Props {
+	searchParams: Promise<{
+		page: string;
+		limit: string;
+		quyery: string;
+	}>;
+}
+
+export default async function UserPage({ searchParams }: Props) {
+	const page = (await searchParams).page ? parseInt((await searchParams).page!) : 1;
+	const limit = (await searchParams).limit ? parseInt((await searchParams).limit!) : 0;
+	//const query = (await searchParams).quyery ? (await searchParams).quyery! : undefined;
+
+	const { ok, message, totalPages, users } = await getUsers({ page, limit });
+
+	if (!ok) {
+		return <p>{message}</p>;
+	}
+
 	return (
 		<div className="space-y-6">
 			<div className="flex items-center justify-between">
@@ -33,7 +53,8 @@ export default function UserPage() {
 					<CardTitle>Lista de usuarios</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<TableUsers />
+					<TableUser users={users!} />
+					<Pagination totalPages={totalPages!} />
 				</CardContent>
 			</Card>
 		</div>

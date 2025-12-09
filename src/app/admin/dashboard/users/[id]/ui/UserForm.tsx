@@ -4,12 +4,7 @@ import { createUpdateUser } from '@/actions/user/create-update-user';
 import {
 	Button,
 	Card,
-	CardAction,
 	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
 	Checkbox,
 	Input,
 	Label,
@@ -21,10 +16,10 @@ import {
 } from '@/components';
 import { ArrayUserRole, User, UserRole } from '@/interfaces';
 import { Save } from 'lucide-react';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { toast, Toaster } from 'sonner';
+import { toast } from 'sonner';
 
 interface Props {
 	user?: User;
@@ -69,7 +64,7 @@ export const UserForm = ({ user, id }: Props) => {
 		}
 
 		let messageSuccess = id === 'new' ? `Usuario creado` : 'Usuario actualizado';
-		toast(messageSuccess);
+		toast.success(messageSuccess);
 		setLoading(false);
 		router.replace(`/admin/dashboard/users/${resp.user?.id}`);
 	};
@@ -80,13 +75,14 @@ export const UserForm = ({ user, id }: Props) => {
 				<CardTitle>Card Title</CardTitle>
 				<CardDescription>Card Description</CardDescription>
 			</CardHeader> */}
-			<Toaster position="top-right" richColors closeButton />
+
 			<CardContent>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="space-y-2">
 						<Label htmlFor="name">Nombre completo</Label>
 						<Input
 							type="text"
+							id="name"
 							placeholder="Jhon Due"
 							{...register('name', { required: true })}
 						/>
@@ -100,6 +96,7 @@ export const UserForm = ({ user, id }: Props) => {
 						<Label htmlFor="email">Email</Label>
 						<Input
 							type="email"
+							id="email"
 							placeholder="correo@example.com"
 							{...register('email', { required: true })}
 						/>
@@ -111,7 +108,12 @@ export const UserForm = ({ user, id }: Props) => {
 					</div>
 					<div className="space-y-2">
 						<Label htmlFor="phone">Telefono</Label>
-						<Input type="text" placeholder="5512345678" {...register('phone')} />
+						<Input
+							type="text"
+							id="phone"
+							placeholder="5512345678"
+							{...register('phone')}
+						/>
 						<div className="h-5">
 							{errors.phone && (
 								<p className="text-sm font-medium text-red-500">
@@ -132,7 +134,7 @@ export const UserForm = ({ user, id }: Props) => {
 									value={field.value}
 									defaultValue={field.value}
 								>
-									<SelectTrigger className="w-full">
+									<SelectTrigger className="w-full" id="role">
 										<SelectValue placeholder="Seleccione un rol" />
 									</SelectTrigger>
 

@@ -1,0 +1,46 @@
+import {
+	Button,
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '@/components';
+import { User } from '@/interfaces';
+import { cn } from '@/lib/utils';
+import { CircleCheckBig, CircleX, Edit } from 'lucide-react';
+import Link from 'next/link';
+import { TableRowUser } from './TableRowUser';
+
+interface Props {
+	users: User[];
+}
+export const TableUser = async ({ users }: Props) => {
+	return (
+		<>
+			<Table>
+				<TableHeader>
+					<TableRow>
+						<TableHead>Nombre</TableHead>
+						<TableHead>Email</TableHead>
+						<TableHead>Rol</TableHead>
+						<TableHead>Estado</TableHead>
+						<TableHead className="text-right">Acciones</TableHead>
+					</TableRow>
+				</TableHeader>
+				<TableBody>
+					{users!.length === 0 ? (
+						<TableRow>
+							<TableCell colSpan={5} className="text-center text-muted-foreground">
+								No hay usuarios registrados
+							</TableCell>
+						</TableRow>
+					) : (
+						users!.map((user) => <TableRowUser key={user.id} user={user} />)
+					)}
+				</TableBody>
+			</Table>
+		</>
+	);
+};
