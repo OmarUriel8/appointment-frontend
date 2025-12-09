@@ -6,3 +6,6 @@ export * from './auth/login';
 export * from './auth/register-user';
 export * from './user/get-users';
 export * from './user/get-user-by-id';
+export * from './service/create-update-service';
+export * from './user/update-status-user';
+export * from './service/update-status-service';

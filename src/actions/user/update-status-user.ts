@@ -7,30 +7,19 @@ import { formatErrorAPI } from '@/utils';
 import { revalidatePath } from 'next/cache';
 
 interface CreateUpdateProps {
-	name?: string;
-	email?: string;
-	phone?: string;
-	role?: UserRole;
-	isActive?: boolean;
-	password?: string;
+	isActive: boolean;
+
 	id: string;
 }
 
-export const createUpdateUser = async ({
-	id,
-	password,
-	...userObject
-}: CreateUpdateProps) => {
+export const updateStatusUser = async ({ id, isActive }: CreateUpdateProps) => {
 	try {
 		const session = await auth();
 		let url = `${baseUrl}/user`;
 		if (id !== 'new') url += `/${id}`;
 		let method = id === 'new' ? 'POST' : 'PATCH';
 
-		let body = { ...userObject } as any;
-		if (password !== '') {
-			body.password = password;
-		}
+		let body = { isActive };
 
 		const resp = await fetch(url, {
 			body: JSON.stringify(body),
@@ -51,6 +40,7 @@ export const createUpdateUser = async ({
 
 		revalidatePath('admin/dashboard/users');
 		revalidatePath(`admin/dashboard/users/${user.id}`);
+		revalidatePath(`/`);
 		return {
 			ok: true,
 			user,
