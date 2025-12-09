@@ -1,9 +1,10 @@
 'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '../theme/ThemeToggle';
-import { Logo } from '../ui/logo/Logo';
 import { signOut, useSession } from 'next-auth/react';
+import { LogOut } from 'lucide-react';
+import { Logo } from '../logo/Logo';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
 export function Navbar() {
 	const { data: session } = useSession();
@@ -58,7 +59,13 @@ export function Navbar() {
 				</div>
 				<div className="flex items-center gap-4">
 					{isAuthenticated ? (
-						<Button variant="ghost" size="sm" onClick={() => signOut()}>
+						<Button
+							variant="ghost"
+							size="sm"
+							onClick={() => signOut()}
+							className="text-destructive hover:text-destructive hover:bg-destructive/10 bg-transparent mt-2"
+						>
+							<LogOut className="mr-1 h-4 w-4" />
 							Cerrar Sesión
 						</Button>
 					) : (

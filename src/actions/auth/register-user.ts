@@ -1,7 +1,7 @@
 'use server';
-import { User, UserRole } from '@/interfaces';
+import { User } from '@/interfaces';
 import { formatErrorAPI } from '@/utils';
-import { baseUrl } from './api.config';
+import { baseUrl } from '../api.config';
 
 interface RegisterUserProps {
 	name: string;

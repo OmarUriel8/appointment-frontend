@@ -1,7 +1,7 @@
 'use server';
 
 import { ApiService, Service } from '@/interfaces';
-import { baseUrl } from './api.config';
+import { baseUrl } from '../api.config';
 
 export const getServiceByslugOrId = async (term: string): Promise<Service | null> => {
 	const resp = await fetch(`${baseUrl}/service/${term}`);

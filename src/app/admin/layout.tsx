@@ -1,0 +1,15 @@
+import { AdminSidebar, AdminTopbar } from '@/components';
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+	return (
+		<div className="flex h-screen overflow-hidden">
+			<AdminSidebar />
+			<div className="flex flex-1 flex-col overflow-hidden">
+				<AdminTopbar />
+				<main className="flex-1 overflow-y-auto bg-background p-4 md:p-6">
+					<div className="ml-0  lg:ml-64 p-4">{children}</div>
+				</main>
+			</div>
+		</div>
+	);
+}

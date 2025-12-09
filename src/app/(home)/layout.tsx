@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-background">
-			<BackgroundGradient />
+		<div className="relative min-h-screen bg-background">
 			<Navbar />
+			<BackgroundGradient />
 			<main className="relative container mx-auto px-4 py-8 mb-40">{children}</main>
 
 			<Footer />

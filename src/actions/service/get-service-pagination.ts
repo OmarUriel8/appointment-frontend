@@ -1,7 +1,7 @@
 'use server';
 
 import { Service, ServicesPagination, ServicesResponse } from '@/interfaces';
-import { baseUrl } from './api.config';
+import { baseUrl } from '../api.config';
 
 interface PaginationOptions {
 	page?: number;
@@ -21,7 +21,7 @@ export const getServicePagination = async ({
 	if (limit < 1) limit = 12;
 
 	const params = new URLSearchParams();
-	params.append('limit', Math.abs(limit).toString());
+	params.append('limit', limit.toString());
 	params.append('isActive', 'true');
 	if (page > 0) {
 		params.append('offset', ((page - 1) * limit).toString());

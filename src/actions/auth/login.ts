@@ -1,8 +1,8 @@
 'use server';
 import { User } from '@/interfaces';
-import { baseUrl } from './api.config';
 import { formatErrorAPI } from '@/utils';
 import { signIn } from '@/auth';
+import { baseUrl } from '../api.config';
 
 export const login = async (email: string, password: string): Promise<User> => {
 	const dataString = JSON.stringify({ email, password });

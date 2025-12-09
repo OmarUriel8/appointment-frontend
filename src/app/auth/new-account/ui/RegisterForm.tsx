@@ -129,7 +129,7 @@ export const RegisterForm = () => {
 						<div className="flex-1 border-t border-gray-500"></div>
 					</div>
 
-					<Link href="/auth/login" className="btn-secondary text-center">
+					<Link href="/auth/login" className="text-center">
 						<Button type="button" className="w-full" variant="link">
 							Inicia sesión
 						</Button>

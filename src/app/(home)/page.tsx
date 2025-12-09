@@ -26,10 +26,10 @@ export default async function HomePage() {
 			<section className="py-16">
 				<h2 className="text-3xl font-bold text-center mb-10">Beneficios</h2>
 
-				<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+				<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto ">
 					{benefits.map(({ title, description, id }) => (
 						<div className="p-6 border rounded-2xl bg-muted shadow-sm" key={id}>
-							<h3 className="text-xl font-semibold mb-2 text-slate-700">{title}</h3>
+							<h3 className="text-xl font-semibold mb-2 text-primary">{title}</h3>
 							<p className="text-muted-foreground">{description}</p>
 						</div>
 					))}
@@ -41,7 +41,7 @@ export default async function HomePage() {
 
 				<div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
 					{howFuntion.map(({ id, title, descripption }) => (
-						<div className="text-center" key={id}>
+						<div className="p-6 text-center" key={id}>
 							<div className="text-primary text-5xl font-bold mb-4">{id}</div>
 							<h3 className="text-xl font-semibold mb-2">{title}</h3>
 							<p className="dark:text-gray-400 text-muted-foreground">{descripption}</p>

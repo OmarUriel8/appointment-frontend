@@ -1,7 +1,7 @@
 'use server';
 import { Testimonial } from '@/interfaces';
-import { baseUrl } from './api.config';
 import { testimonialsMook } from '@/config/information.data';
+import { baseUrl } from '../api.config';
 
 export const getTestimonials = async (limit: number): Promise<Testimonial[]> => {
 	if (isNaN(Number(limit))) limit = 3;
