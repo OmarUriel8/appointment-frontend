@@ -10,9 +10,16 @@ class InvalidLoginError extends CredentialsSignin {
 		this.code = code;
 	}
 }
-
+const EXPIRES = 1 * 60 * 60;
 export const { auth, handlers, signIn, signOut } = NextAuth({
 	// debug: true,
+	session: {
+		strategy: 'jwt', // Obligatorio para controlar expiración
+		maxAge: EXPIRES,
+	},
+	jwt: {
+		maxAge: EXPIRES,
+	},
 	providers: [
 		Credentials({
 			credentials: {
@@ -50,10 +57,22 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 			if (user) {
 				token.data = user;
 				token.accessToken = user.token;
+				token.expires = Date.now() + EXPIRES * 1000;
+			}
+
+			const expires: number = Number(token.expires);
+
+			// Si el token ya expiró → sesión fuera
+			if (Date.now() > expires) {
+				return null;
 			}
 			return token;
 		},
 		session({ session, token, user }) {
+			if (!token?.accessToken) {
+				return null as any;
+			}
+
 			session.accessToken = token.accessToken as string;
 			session.user = token.data as any;
 			return session;
