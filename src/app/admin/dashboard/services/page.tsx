@@ -1,6 +1,17 @@
-import { Card, CardContent, CardHeader, CardTitle, Pagination } from '@/components';
+import {
+	Button,
+	Card,
+	CardContent,
+	CardHeader,
+	CardTitle,
+	DashboardTitle,
+	Pagination,
+	ServiceSearchInput,
+} from '@/components';
 import { TableService } from './ui/TableService';
 import { getServicePagination } from '@/actions';
+import Link from 'next/link';
+import { Plus } from 'lucide-react';
 
 interface Props {
 	searchParams: Promise<{
@@ -28,11 +39,21 @@ export default async function ServicePage({ searchParams }: Props) {
 
 	return (
 		<div className="space-y-6">
-			<div className="flex items-center justify-between">
-				<div>
-					<h1 className="text-3xl font-bold">Gestión de Servicios</h1>
-					<p className="text-muted-foreground">Administra los servicios disponibles</p>
-				</div>
+			<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+				<DashboardTitle
+					title="Gestión de Servicios"
+					subtitle="Administra los servicios disponibles"
+				/>
+
+				{/* Search */}
+				<ServiceSearchInput />
+
+				<Link href="/admin/dashboard/services/new">
+					<Button className="btn-primary">
+						<Plus className="mr-2 h-4 w-4" />
+						Agregar Servicio
+					</Button>
+				</Link>
 			</div>
 
 			<Card>

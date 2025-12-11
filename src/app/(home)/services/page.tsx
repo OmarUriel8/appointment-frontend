@@ -25,7 +25,9 @@ export default async function ServicePage({ searchParams }: Props) {
 		<>
 			<Title title="Servicios" subtitle="Todos los servicios" className="mb-2" />
 			{/* Search */}
-			<ServiceSearchInput />
+			<div className="mb-6">
+				<ServiceSearchInput />
+			</div>
 
 			<ServiceGrid services={services} />
 

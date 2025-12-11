@@ -47,46 +47,48 @@ export default function ClientPage() {
 					<CardTitle>Lista de clientes</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<Table>
-						<TableHeader>
-							<TableRow>
-								<TableHead>Nombre</TableHead>
-								<TableHead>Email</TableHead>
-								<TableHead>Teléfono</TableHead>
-								<TableHead>Citas</TableHead>
-								<TableHead>Estado</TableHead>
-								<TableHead className="text-right">Acciones</TableHead>
-							</TableRow>
-						</TableHeader>
-						<TableBody>
-							{clients.length === 0 ? (
+					<div className="max-h-[300px] overflow-y-auto">
+						<Table>
+							<TableHeader>
 								<TableRow>
-									<TableCell colSpan={6} className="text-center text-muted-foreground">
-										No hay clientes registrados
-									</TableCell>
+									<TableHead>Nombre</TableHead>
+									<TableHead>Email</TableHead>
+									<TableHead>Teléfono</TableHead>
+									<TableHead>Citas</TableHead>
+									<TableHead>Estado</TableHead>
+									<TableHead className="text-right">Acciones</TableHead>
 								</TableRow>
-							) : (
-								clients.map((client) => (
-									<TableRow key={client.id}>
-										<TableCell className="font-medium">{client.name}</TableCell>
-										<TableCell>{client.email}</TableCell>
-										<TableCell>{client.phone}</TableCell>
-										<TableCell>{client.appointments}</TableCell>
-										<TableCell>
-											<span className="rounded-full bg-green-500/10 px-2 py-1 text-xs text-green-500">
-												{client.status}
-											</span>
-										</TableCell>
-										<TableCell className="text-right">
-											<Button variant="ghost" size="icon">
-												<Eye className="h-4 w-4" />
-											</Button>
+							</TableHeader>
+							<TableBody>
+								{clients.length === 0 ? (
+									<TableRow>
+										<TableCell colSpan={6} className="text-center text-muted-foreground">
+											No hay clientes registrados
 										</TableCell>
 									</TableRow>
-								))
-							)}
-						</TableBody>
-					</Table>
+								) : (
+									clients.map((client) => (
+										<TableRow key={client.id}>
+											<TableCell className="font-medium">{client.name}</TableCell>
+											<TableCell>{client.email}</TableCell>
+											<TableCell>{client.phone}</TableCell>
+											<TableCell>{client.appointments}</TableCell>
+											<TableCell>
+												<span className="rounded-full bg-green-500/10 px-2 py-1 text-xs text-green-500">
+													{client.status}
+												</span>
+											</TableCell>
+											<TableCell className="text-right">
+												<Button variant="ghost" size="icon">
+													<Eye className="h-4 w-4" />
+												</Button>
+											</TableCell>
+										</TableRow>
+									))
+								)}
+							</TableBody>
+						</Table>
+					</div>
 					<Pagination totalPages={20} />
 				</CardContent>
 			</Card>

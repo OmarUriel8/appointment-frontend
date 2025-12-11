@@ -100,6 +100,7 @@ export const AdminSidebar = () => {
 								<Link
 									key={item.href}
 									href={item.href}
+									onClick={() => closeSideMenu()}
 									className={cn(
 										'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
 										isActive
@@ -116,7 +117,7 @@ export const AdminSidebar = () => {
 
 					{/* Footer Actions */}
 					<div className="border-t border-sidebar-border p-4 space-y-2">
-						<Link href="/">
+						<Link href="/" onClick={() => closeSideMenu()}>
 							<Button
 								variant="outline"
 								className="w-full justify-start bg-transparent"
@@ -129,7 +130,10 @@ export const AdminSidebar = () => {
 						<Button
 							className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 bg-transparent mt-2"
 							size="sm"
-							onClick={() => signOut()}
+							onClick={() => {
+								closeSideMenu();
+								signOut();
+							}}
 						>
 							<LogOut className="mr-2 h-4 w-4" />
 							Cerrar sesión

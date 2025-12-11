@@ -40,7 +40,7 @@ export const getServicePagination = async ({
 		params.append('serviceName', query);
 	}
 
-	console.log(params);
+	// console.log(params);
 	const response = await fetch(`${baseUrl}/service?${params.toString()}`);
 
 	if (!response.ok) {
@@ -53,7 +53,7 @@ export const getServicePagination = async ({
 
 	const { services, ...rest }: ServicesResponse = await response.json();
 
-	console.log(services);
+	// console.log(services);
 	const arraySerice: Service[] = services.map(
 		({ images, durationMinutes, ...service }) => ({
 			...service,

@@ -1,5 +1,6 @@
 'use client';
 
+import { createUpdateService } from '@/actions';
 import { Button, Card, CardContent, Checkbox, Input } from '@/components';
 import { Service } from '@/interfaces';
 import { cn } from '@/lib/utils';
@@ -8,6 +9,7 @@ import { Plus, Save, Tag, Upload, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 interface Props {
 	service?: Service;
@@ -16,6 +18,7 @@ interface Props {
 
 interface InputForm extends Service {
 	files: File[];
+	imagesRemove: string[];
 }
 
 export const ServiceForm = ({ service, slug }: Props) => {
@@ -36,8 +39,9 @@ export const ServiceForm = ({ service, slug }: Props) => {
 		watch,
 		getValues,
 		setValue,
+		reset,
 	} = useForm<InputForm>({
-		defaultValues: service,
+		defaultValues: { ...service, imagesRemove: [], files: [], images: service?.images },
 	});
 
 	const selectedTags = watch('tags');
@@ -45,7 +49,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 
 	useEffect(() => {
 		setFiles([]);
-		//reset(product); // fuerza que los valores del form se actualicen. Por las imagenes le agregue la funcion de eliminar
+		//reset(service); // fuerza que los valores del form se actualicen. Por las imagenes le agregue la funcion de eliminar
 	}, [service]); //reset
 
 	const addTag = () => {
@@ -56,24 +60,12 @@ export const ServiceForm = ({ service, slug }: Props) => {
 		const tagSet = new Set(getValues('tags'));
 		tagSet.add(value);
 		setValue('tags', Array.from(tagSet));
-
-		// if (newTag.trim() && !product.tags.includes(newTag.trim())) {
-		// 	setProduct((prev) => ({
-		// 		...prev,
-		// 		tags: [...prev.tags, newTag.trim()],
-		// 	}));
-		// 	setNewTag('');
-		// }
 	};
 
 	const removeTag = (tagToRemove: string) => {
 		const tagSet = new Set(getValues('tags'));
 		tagSet.delete(tagToRemove);
 		setValue('tags', Array.from(tagSet));
-		// setProduct((prev) => ({
-		// 	...prev,
-		// 	tags: prev.tags.filter((tag) => tag !== tagToRemove),
-		// }));
 	};
 
 	const handleDrag = (e: React.DragEvent) => {
@@ -112,6 +104,9 @@ export const ServiceForm = ({ service, slug }: Props) => {
 	const removeImage = (image: string) => {
 		const newImages = getValues('images').filter((img) => img !== image) || [];
 		setValue('images', newImages);
+		const removeImages = getValues('imagesRemove');
+		console.log(removeImages);
+		setValue('imagesRemove', [...(removeImages ?? []), image]);
 	};
 
 	const removeUploadedImage = (fileRemove: File) => {
@@ -121,8 +116,27 @@ export const ServiceForm = ({ service, slug }: Props) => {
 		setFiles([...newImages]);
 		setValue('files', newImages);
 	};
+
 	const onSubmit = async (data: InputForm) => {
-		console.log(data);
+		const { imagesRemove, ...serviceLike } = data;
+		setLoading(true);
+
+		const resp = await createUpdateService({
+			slugParam: slug,
+			serviceLike,
+			imagesRemove,
+		});
+
+		if (!resp.ok) {
+			setErrorMessage(resp.message);
+			setLoading(false);
+			return;
+		}
+
+		let messageSuccess = slug === 'new' ? `Servicio creado` : 'Servicio actualizado';
+		toast.success(messageSuccess);
+		setLoading(false);
+		router.replace(`/admin/dashboard/services/${resp.service?.slug}`);
 	};
 	return (
 		<Card>
@@ -225,7 +239,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 
 							<div className="space-y-4">
 								<div className="flex flex-wrap gap-2">
-									{selectedTags.map((tag) => (
+									{selectedTags?.map((tag) => (
 										<span
 											key={tag}
 											className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 border border-green-200"
@@ -288,9 +302,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 					<div className="col-span-1">
 						{/* // ? Service Images */}
 
-						<h2 className="text-xl font-semibold text-slate-800 mb-6">
-							Imágenes del servicio
-						</h2>
+						<h2 className="text-xl font-semibol mb-6">Imágenes del servicio</h2>
 
 						{/* // ? Drag & Drop Zone */}
 						<div
@@ -314,12 +326,14 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							<div className="space-y-4">
 								<Upload className="mx-auto h-12 w-12 text-slate-400" />
 								<div>
-									<p className="text-lg font-medium text-slate-700">
+									<p className="text-lg font-medium text-slate-700 dark:text-slate-200">
 										Arrastra las imágenes aquí
 									</p>
-									<p className="text-sm text-slate-500">o haz clic para buscar</p>
+									<p className="text-sm text-slate-500 dark:text-slate-400">
+										o haz clic para buscar
+									</p>
 								</div>
-								<p className="text-xs text-slate-400">
+								<p className="text-xs text-slate-400 dark:text-slate-300">
 									PNG, JPG, WebP hasta 3MB cada una
 								</p>
 							</div>
@@ -328,13 +342,13 @@ export const ServiceForm = ({ service, slug }: Props) => {
 						{/* // ? Current Images */}
 						<div
 							className={cn('mt-6 space-y-3', {
-								hidden: !service || selectedImages.length === 0,
+								hidden: !service || selectedImages?.length === 0,
 							})}
 						>
-							<h3 className="text-sm font-medium text-slate-700">Imágenes actuales</h3>
+							<h3 className="text-sm font-medium">Imágenes actuales</h3>
 
 							<div className="grid grid-cols-4 gap-3">
-								{selectedImages.map((image, index) => (
+								{selectedImages?.map((image, index) => (
 									<div key={index} className="relative group">
 										<div className="aspect-square bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center">
 											<img
@@ -350,7 +364,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 										>
 											<X className="h-3 w-3" />
 										</button>
-										<p className="mt-1 text-xs text-slate-600 truncate">{image}</p>
+										<p className="mt-1 text-xs truncate">{image}</p>
 									</div>
 								))}
 							</div>
@@ -363,7 +377,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 								hidden: files.length === 0,
 							})}
 						>
-							<h3 className="text-sm font-medium text-slate-700">Imágenes por cargar</h3>
+							<h3 className="text-sm font-medium">Imágenes por cargar</h3>
 							<div className="grid grid-cols-4 gap-3">
 								{files.map((file, index) => (
 									<div key={index} className="relative group">

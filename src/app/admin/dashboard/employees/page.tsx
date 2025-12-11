@@ -51,43 +51,47 @@ export default function EmployeePage() {
 						<CardTitle>Lista de empleados</CardTitle>
 					</CardHeader>
 					<CardContent>
-						<Table>
-							<TableHeader>
-								<TableRow>
-									<TableHead>Nombre</TableHead>
-									<TableHead>Email</TableHead>
-									<TableHead>Activo</TableHead>
-									<TableHead>Horario</TableHead>
-								</TableRow>
-							</TableHeader>
-							<TableBody>
-								{employees.length === 0 ? (
+						<div className="max-h-[300px] overflow-y-auto">
+							<Table>
+								<TableHeader>
 									<TableRow>
-										<TableCell colSpan={4} className="text-center text-muted-foreground">
-											No hay empleados registrados
-										</TableCell>
+										<TableHead>Nombre</TableHead>
+										<TableHead>Email</TableHead>
+										<TableHead>Activo</TableHead>
+										<TableHead>Horario</TableHead>
 									</TableRow>
-								) : (
-									employees.map((employee) => (
-										<TableRow key={employee.id}>
-											<TableCell className="font-medium">{employee.name}</TableCell>
-											<TableCell>{employee.email}</TableCell>
-											<TableCell>
-												<span className="rounded-full bg-green-500/10 px-2 py-1 text-xs text-green-500">
-													activo
-												</span>
-											</TableCell>
-											<TableCell>
-												<Button variant="ghost" size="icon">
-													<Eye className="h-4 w-4" />
-												</Button>
+								</TableHeader>
+								<TableBody>
+									{employees.length === 0 ? (
+										<TableRow>
+											<TableCell
+												colSpan={4}
+												className="text-center text-muted-foreground"
+											>
+												No hay empleados registrados
 											</TableCell>
 										</TableRow>
-									))
-								)}
-							</TableBody>
-						</Table>
-
+									) : (
+										employees.map((employee) => (
+											<TableRow key={employee.id}>
+												<TableCell className="font-medium">{employee.name}</TableCell>
+												<TableCell>{employee.email}</TableCell>
+												<TableCell>
+													<span className="rounded-full bg-green-500/10 px-2 py-1 text-xs text-green-500">
+														activo
+													</span>
+												</TableCell>
+												<TableCell>
+													<Button variant="ghost" size="icon">
+														<Eye className="h-4 w-4" />
+													</Button>
+												</TableCell>
+											</TableRow>
+										))
+									)}
+								</TableBody>
+							</Table>
+						</div>
 						<Pagination totalPages={10} />
 					</CardContent>
 				</Card>

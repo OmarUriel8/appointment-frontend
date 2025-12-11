@@ -15,7 +15,7 @@ interface Props {
 
 export const TableService = async ({ services }: Props) => {
 	return (
-		<>
+		<div className="max-h-[300px] overflow-y-auto">
 			<Table>
 				<TableHeader>
 					<TableRow>
@@ -27,6 +27,7 @@ export const TableService = async ({ services }: Props) => {
 						<TableHead className="text-right">Acciones</TableHead>
 					</TableRow>
 				</TableHeader>
+
 				<TableBody>
 					{services.length === 0 ? (
 						<TableRow>
@@ -41,6 +42,6 @@ export const TableService = async ({ services }: Props) => {
 					)}
 				</TableBody>
 			</Table>
-		</>
+		</div>
 	);
 };

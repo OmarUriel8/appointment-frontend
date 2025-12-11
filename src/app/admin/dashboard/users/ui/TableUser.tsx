@@ -18,7 +18,7 @@ interface Props {
 }
 export const TableUser = async ({ users }: Props) => {
 	return (
-		<>
+		<div className="max-h-[300px] overflow-y-auto">
 			<Table>
 				<TableHeader>
 					<TableRow>
@@ -41,6 +41,6 @@ export const TableUser = async ({ users }: Props) => {
 					)}
 				</TableBody>
 			</Table>
-		</>
+		</div>
 	);
 };
