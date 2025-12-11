@@ -1,3 +1,4 @@
+import { getUsers } from '@/actions';
 import {
 	Button,
 	Card,
@@ -11,8 +12,11 @@ import {
 	TableRow,
 	Table,
 	Pagination,
+	DashboardTitle,
 } from '@/components';
-import { Eye } from 'lucide-react';
+import { Eye, Plus } from 'lucide-react';
+import Link from 'next/link';
+import { TableClient } from './ui/TableClient';
 
 // Mock data
 const clients = [
@@ -34,12 +38,43 @@ const clients = [
 	},
 ];
 
-export default function ClientPage() {
+interface Props {
+	searchParams: Promise<{
+		page: string;
+		limit: string;
+		quyery: string;
+	}>;
+}
+
+export default async function ClientPage({ searchParams }: Props) {
+	const page = (await searchParams).page ? parseInt((await searchParams).page) : 1;
+	const limit = (await searchParams).limit ? parseInt((await searchParams).limit!) : 0;
+	//const query = (await searchParams).quyery ? (await searchParams).quyery! : undefined;
+
+	const {
+		ok,
+		totalPages,
+		users: clients,
+		message,
+	} = await getUsers({ role: 'CLIENT', page, limit });
+
+	if (!ok) {
+		return <p>{message}</p>;
+	}
 	return (
 		<div className="space-y-6">
-			<div>
-				<h1 className="text-3xl font-bold">Gestión de Clientes</h1>
-				<p className="text-muted-foreground">Administra los clientes registrados</p>
+			<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+				<DashboardTitle
+					title="Gestión de Clientes"
+					subtitle="Administra los clientes registrados"
+				/>
+
+				<Link href="/admin/dashboard/user/new?role=client">
+					<Button className="btn-primary">
+						<Plus className="mr-2 h-4 w-4" />
+						Agregar Cliente
+					</Button>
+				</Link>
 			</div>
 
 			<Card>
@@ -48,48 +83,9 @@ export default function ClientPage() {
 				</CardHeader>
 				<CardContent>
 					<div className="max-h-[300px] overflow-y-auto">
-						<Table>
-							<TableHeader>
-								<TableRow>
-									<TableHead>Nombre</TableHead>
-									<TableHead>Email</TableHead>
-									<TableHead>Teléfono</TableHead>
-									<TableHead>Citas</TableHead>
-									<TableHead>Estado</TableHead>
-									<TableHead className="text-right">Acciones</TableHead>
-								</TableRow>
-							</TableHeader>
-							<TableBody>
-								{clients.length === 0 ? (
-									<TableRow>
-										<TableCell colSpan={6} className="text-center text-muted-foreground">
-											No hay clientes registrados
-										</TableCell>
-									</TableRow>
-								) : (
-									clients.map((client) => (
-										<TableRow key={client.id}>
-											<TableCell className="font-medium">{client.name}</TableCell>
-											<TableCell>{client.email}</TableCell>
-											<TableCell>{client.phone}</TableCell>
-											<TableCell>{client.appointments}</TableCell>
-											<TableCell>
-												<span className="rounded-full bg-green-500/10 px-2 py-1 text-xs text-green-500">
-													{client.status}
-												</span>
-											</TableCell>
-											<TableCell className="text-right">
-												<Button variant="ghost" size="icon">
-													<Eye className="h-4 w-4" />
-												</Button>
-											</TableCell>
-										</TableRow>
-									))
-								)}
-							</TableBody>
-						</Table>
+						<TableClient clients={clients!} />
 					</div>
-					<Pagination totalPages={20} />
+					<Pagination totalPages={totalPages!} />
 				</CardContent>
 			</Card>
 

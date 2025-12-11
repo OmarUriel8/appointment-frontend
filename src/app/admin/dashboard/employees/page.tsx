@@ -1,101 +1,66 @@
+import { getUsers } from '@/actions';
 import {
 	Button,
 	Card,
 	CardContent,
 	CardHeader,
 	CardTitle,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-	Table,
 	Pagination,
+	DashboardTitle,
 } from '@/components';
-import { Eye, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
+import { TableEmployee } from './ui/TableEmployee';
 
-const employees = [
-	{
-		id: '1',
-		name: 'Ana López',
-		email: 'ana@example.com',
-		position: 'Estilista',
-		schedule: 'Lun-Vie 9:00-18:00',
-	},
-	{
-		id: '2',
-		name: 'Carlos Ruiz',
-		email: 'carlos@example.com',
-		position: 'Masajista',
-		schedule: 'Mar-Sáb 10:00-19:00',
-	},
-];
+interface Props {
+	searchParams: Promise<{
+		page: string;
+		limit: string;
+		quyery: string;
+	}>;
+}
 
-export default function EmployeePage() {
+export default async function EmployeePage({ searchParams }: Props) {
+	const page = (await searchParams).page ? parseInt((await searchParams).page) : 1;
+	const limit = (await searchParams).limit ? parseInt((await searchParams).limit!) : 0;
+	//const query = (await searchParams).quyery ? (await searchParams).quyery! : undefined;
+
+	const {
+		ok,
+		totalPages,
+		users: employees,
+		message,
+	} = await getUsers({ role: 'EMPLOYEE', page, limit });
+
+	if (!ok) {
+		return <p>{message}</p>;
+	}
+
 	return (
 		<div className="space-y-6">
-			<div className="flex items-center justify-between">
-				<div>
-					<h1 className="text-3xl font-bold">Gestión de Empleados</h1>
-					<p className="text-muted-foreground">Administra los empleados y sus horarios</p>
-				</div>
-				<Button>
-					<Plus className="mr-2 h-4 w-4" />
-					Agregar empleado
-				</Button>
+			<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+				<DashboardTitle
+					title="Gestión de Empleados"
+					subtitle="Administra los empleados y sus horarios"
+				/>
+
+				<Link href="/admin/dashboard/user/new?role=employee">
+					<Button className="btn-primary">
+						<Plus className="mr-2 h-4 w-4" />
+						Agregar Empleado
+					</Button>
+				</Link>
 			</div>
 
-			<div>
-				<Card>
-					<CardHeader>
-						<CardTitle>Lista de empleados</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div className="max-h-[300px] overflow-y-auto">
-							<Table>
-								<TableHeader>
-									<TableRow>
-										<TableHead>Nombre</TableHead>
-										<TableHead>Email</TableHead>
-										<TableHead>Activo</TableHead>
-										<TableHead>Horario</TableHead>
-									</TableRow>
-								</TableHeader>
-								<TableBody>
-									{employees.length === 0 ? (
-										<TableRow>
-											<TableCell
-												colSpan={4}
-												className="text-center text-muted-foreground"
-											>
-												No hay empleados registrados
-											</TableCell>
-										</TableRow>
-									) : (
-										employees.map((employee) => (
-											<TableRow key={employee.id}>
-												<TableCell className="font-medium">{employee.name}</TableCell>
-												<TableCell>{employee.email}</TableCell>
-												<TableCell>
-													<span className="rounded-full bg-green-500/10 px-2 py-1 text-xs text-green-500">
-														activo
-													</span>
-												</TableCell>
-												<TableCell>
-													<Button variant="ghost" size="icon">
-														<Eye className="h-4 w-4" />
-													</Button>
-												</TableCell>
-											</TableRow>
-										))
-									)}
-								</TableBody>
-							</Table>
-						</div>
-						<Pagination totalPages={10} />
-					</CardContent>
-				</Card>
-			</div>
+			<Card>
+				<CardHeader>
+					<CardTitle>Lista de empleados</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<TableEmployee employees={employees!} />
+					<Pagination totalPages={totalPages!} />
+				</CardContent>
+			</Card>
 		</div>
 	);
 }

@@ -25,3 +25,5 @@ export * from './ui/select';
 export * from './ui/table';
 export * from './ui/title/Title';
 export * from './ui/checkbox';
+export * from './ui/tooltip';
+export * from './ui/tooltip-button/TooltipButton';

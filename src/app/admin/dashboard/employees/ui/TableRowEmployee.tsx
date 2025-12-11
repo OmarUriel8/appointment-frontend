@@ -1,39 +1,35 @@
 'use client';
 
-import { updateStatusUser } from '@/actions';
 import { Button, TableCell, TableRow, TooltipButton } from '@/components';
 import { useUserStatusChange } from '@/hooks';
 import { User } from '@/interfaces';
 import { cn } from '@/lib/utils';
-import { Edit, CircleX, CircleCheckBig } from 'lucide-react';
+import { CalendarClock, CircleCheckBig, CircleX, Edit } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
-import { toast } from 'sonner';
 
 interface Props {
-	user: User;
+	employee: User;
 }
-export const TableRowUser = ({ user }: Props) => {
-	const { handleChangeStatus, isLoading } = useUserStatusChange('Usuario');
+export const TableRowEmployee = ({ employee }: Props) => {
+	const { handleChangeStatus, isLoading } = useUserStatusChange('Empleado');
 
 	return (
-		<TableRow key={user.id}>
-			<TableCell className="font-medium">{user.name}</TableCell>
-			<TableCell>{user.email}</TableCell>
-			<TableCell>{user.role}</TableCell>
+		<TableRow key={employee.id}>
+			<TableCell className="font-medium">{employee.name}</TableCell>
+			<TableCell>{employee.email}</TableCell>
 			<TableCell>
 				<span
 					className={cn('rounded-full px-2 py-1 text-xs', {
-						'bg-green-500/10 text-green-500': user.isActive,
-						'bg-red-500/10 text-red-500': !user.isActive,
+						'bg-green-500/10 text-green-500': employee.isActive,
+						'bg-red-500/10 text-red-500': !employee.isActive,
 					})}
 				>
-					{user.isActive ? 'Activo' : 'Inactivo'}
+					{employee.isActive ? 'Activo' : 'Inactivo'}
 				</span>
 			</TableCell>
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">
-					<Link href={`/admin/dashboard/users/${user.id}`}>
+					<Link href={`/admin/dashboard/users/${employee.id}`}>
 						<TooltipButton title="Editar usuario">
 							<Button
 								variant="ghost"
@@ -44,26 +40,37 @@ export const TableRowUser = ({ user }: Props) => {
 							</Button>
 						</TooltipButton>
 					</Link>
+					<Link href={`/admin/dashboard/employees/${employee.id}`}>
+						<TooltipButton title="Editar horario">
+							<Button
+								variant="ghost"
+								className="hover:bg-transparent hover:dark:bg-transparent"
+								size="icon"
+							>
+								<CalendarClock className="h-4 w-4 text-orange-500" />
+							</Button>
+						</TooltipButton>
+					</Link>
 
-					{user.isActive ? (
-						<TooltipButton title="Inactivar usuario">
+					{employee.isActive ? (
+						<TooltipButton title="Inactivar empleado">
 							<Button
 								className="hover:bg-transparent hover:dark:bg-transparent"
 								variant="ghost"
 								size="icon"
-								onClick={() => handleChangeStatus(user.id, false)}
+								onClick={() => handleChangeStatus(employee.id, false)}
 								disabled={isLoading}
 							>
 								<CircleX className="h-4 w-4 text-red-500" />
 							</Button>
 						</TooltipButton>
 					) : (
-						<TooltipButton title="Activar usuario">
+						<TooltipButton title="Activar empleado">
 							<Button
 								className="hover:bg-transparent hover:dark:bg-transparent"
 								variant="ghost"
 								size="icon"
-								onClick={() => handleChangeStatus(user.id, true)}
+								onClick={() => handleChangeStatus(employee.id, true)}
 								disabled={isLoading}
 							>
 								<CircleCheckBig className="h-4 w-4 text-green-500" />

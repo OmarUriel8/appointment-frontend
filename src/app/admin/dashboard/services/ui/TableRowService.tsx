@@ -1,7 +1,7 @@
 'use client';
 
 import { updateStatusService } from '@/actions';
-import { Button, TableCell, TableRow } from '@/components';
+import { Button, TableCell, TableRow, TooltipButton } from '@/components';
 import { Service } from '@/interfaces';
 import { Edit, CircleX, CircleCheckBig } from 'lucide-react';
 import Image from 'next/image';
@@ -42,35 +42,41 @@ export const TableRowService = ({ service }: Props) => {
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">
 					<Link href={`/admin/dashboard/services/${service.id}`}>
-						<Button
-							variant="ghost"
-							className="hover:bg-transparent hover:dark:bg-transparent"
-							size="icon"
-						>
-							<Edit className="h-4 w-4 text-cyan-500" />
-						</Button>
+						<TooltipButton title="Editar servicio">
+							<Button
+								variant="ghost"
+								className="hover:bg-transparent hover:dark:bg-transparent"
+								size="icon"
+							>
+								<Edit className="h-4 w-4 text-cyan-500" />
+							</Button>
+						</TooltipButton>
 					</Link>
 
 					{service.isActive ? (
-						<Button
-							className="hover:bg-transparent hover:dark:bg-transparent"
-							variant="ghost"
-							size="icon"
-							onClick={() => handleChangeStatus(service.id, false)}
-							disabled={isLoading}
-						>
-							<CircleX className="h-4 w-4 text-red-500" />
-						</Button>
+						<TooltipButton title="Inactivar servicio">
+							<Button
+								className="hover:bg-transparent hover:dark:bg-transparent"
+								variant="ghost"
+								size="icon"
+								onClick={() => handleChangeStatus(service.id, false)}
+								disabled={isLoading}
+							>
+								<CircleX className="h-4 w-4 text-red-500" />
+							</Button>
+						</TooltipButton>
 					) : (
-						<Button
-							className="hover:bg-transparent hover:dark:bg-transparent "
-							variant="ghost"
-							size="icon"
-							onClick={() => handleChangeStatus(service.id, true)}
-							disabled={isLoading}
-						>
-							<CircleCheckBig className="h-4 w-4 text-green-500" />
-						</Button>
+						<TooltipButton title="Activar servicio">
+							<Button
+								className="hover:bg-transparent hover:dark:bg-transparent "
+								variant="ghost"
+								size="icon"
+								onClick={() => handleChangeStatus(service.id, true)}
+								disabled={isLoading}
+							>
+								<CircleCheckBig className="h-4 w-4 text-green-500" />
+							</Button>
+						</TooltipButton>
 					)}
 				</div>
 			</TableCell>

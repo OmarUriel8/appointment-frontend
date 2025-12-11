@@ -7,12 +7,12 @@ import {
 	TableRow,
 } from '@/components';
 import { User } from '@/interfaces';
-import { TableRowUser } from './TableRowUser';
-
+import { TableRowEmployee } from './TableRowEmployee';
 interface Props {
-	users: User[];
+	employees: User[];
 }
-export const TableUser = async ({ users }: Props) => {
+
+export const TableEmployee = ({ employees }: Props) => {
 	return (
 		<div className="max-h-[300px] overflow-y-auto">
 			<Table>
@@ -20,20 +20,21 @@ export const TableUser = async ({ users }: Props) => {
 					<TableRow>
 						<TableHead>Nombre</TableHead>
 						<TableHead>Email</TableHead>
-						<TableHead>Rol</TableHead>
-						<TableHead>Estado</TableHead>
+						<TableHead>Activo</TableHead>
 						<TableHead className="text-right">Acciones</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{users!.length === 0 ? (
+					{employees.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={5} className="text-center text-muted-foreground">
-								No hay usuarios registrados
+							<TableCell colSpan={4} className="text-center text-muted-foreground">
+								No hay empleados registrados
 							</TableCell>
 						</TableRow>
 					) : (
-						users!.map((user) => <TableRowUser key={user.id} user={user} />)
+						employees.map((employee) => (
+							<TableRowEmployee employee={employee} key={employee.id} />
+						))
 					)}
 				</TableBody>
 			</Table>

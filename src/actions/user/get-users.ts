@@ -2,13 +2,13 @@
 
 import { auth } from '@/auth';
 import { formatErrorAPI } from '@/utils';
-import { ApiUser } from '@/interfaces';
+import { ApiUser, UserRole } from '@/interfaces';
 import { baseUrl } from '../api.config';
 
 interface PaginationOptions {
 	page?: number;
 	limit?: number;
-	role?: string;
+	role?: UserRole | 'all';
 	isActive?: boolean;
 }
 
@@ -35,6 +35,9 @@ export const getUsers = async ({
 			params.append('isActive', isActive ? 'true' : 'false');
 		}
 
+		if (role != 'all') {
+			params.append('role', role);
+		}
 		const response = await fetch(`${baseUrl}/user?${params.toString()}`, {
 			headers: {
 				Authorization: `Bearer ${session?.accessToken}`,
