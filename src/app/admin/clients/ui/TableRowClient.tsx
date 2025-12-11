@@ -30,7 +30,7 @@ export const TableRowClient = ({ client }: Props) => {
 			</TableCell>
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">
-					<Link href={`/admin/dashboard/apointments/${client.id}`}>
+					<Link href={`/admin/apointments/${client.id}`}>
 						<TooltipButton title="Ver detalles">
 							<Button
 								variant="ghost"
@@ -41,7 +41,7 @@ export const TableRowClient = ({ client }: Props) => {
 							</Button>
 						</TooltipButton>
 					</Link>
-					<Link href={`/admin/dashboard/users/${client.id}`}>
+					<Link href={`/admin/users/${client.id}`}>
 						<TooltipButton title="Editar usuario">
 							<Button
 								variant="ghost"
@@ -52,7 +52,7 @@ export const TableRowClient = ({ client }: Props) => {
 							</Button>
 						</TooltipButton>
 					</Link>
-					<Link href={`/admin/dashboard/apointments/new/?idClient=${client.id}`}>
+					<Link href={`/admin/apointments/new/?idClient=${client.id}`}>
 						<TooltipButton title="Agregar nueva cita">
 							<Button
 								variant="ghost"

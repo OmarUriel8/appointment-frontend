@@ -33,7 +33,7 @@ export const TableRowUser = ({ user }: Props) => {
 			</TableCell>
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">
-					<Link href={`/admin/dashboard/users/${user.id}`}>
+					<Link href={`/admin/users/${user.id}`}>
 						<TooltipButton title="Editar usuario">
 							<Button
 								variant="ghost"

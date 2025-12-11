@@ -5,38 +5,12 @@ import {
 	CardContent,
 	CardHeader,
 	CardTitle,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-	Table,
 	Pagination,
 	DashboardTitle,
 } from '@/components';
-import { Eye, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { TableClient } from './ui/TableClient';
-
-// Mock data
-const clients = [
-	{
-		id: '1',
-		name: 'Laura Martínez',
-		email: 'laura@example.com',
-		phone: '+1234567890',
-		appointments: 5,
-		status: 'Activo',
-	},
-	{
-		id: '2',
-		name: 'Roberto Silva',
-		email: 'roberto@example.com',
-		phone: '+0987654321',
-		appointments: 2,
-		status: 'Activo',
-	},
-];
 
 interface Props {
 	searchParams: Promise<{
@@ -69,7 +43,7 @@ export default async function ClientPage({ searchParams }: Props) {
 					subtitle="Administra los clientes registrados"
 				/>
 
-				<Link href="/admin/dashboard/user/new?role=client">
+				<Link href="/admin/user/new?role=client">
 					<Button className="btn-primary">
 						<Plus className="mr-2 h-4 w-4" />
 						Agregar Cliente

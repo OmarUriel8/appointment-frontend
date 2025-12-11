@@ -7,7 +7,7 @@ interface Props {
 export const TooltipButton = ({ title, children }: Props) => {
 	return (
 		<Tooltip>
-			<TooltipTrigger>{children}</TooltipTrigger>
+			<TooltipTrigger asChild>{children}</TooltipTrigger>
 			<TooltipContent>{title}</TooltipContent>
 		</Tooltip>
 	);

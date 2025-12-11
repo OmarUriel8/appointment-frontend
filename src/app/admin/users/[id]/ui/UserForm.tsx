@@ -66,7 +66,7 @@ export const UserForm = ({ user, id }: Props) => {
 		let messageSuccess = id === 'new' ? `Usuario creado` : 'Usuario actualizado';
 		toast.success(messageSuccess);
 		setLoading(false);
-		router.replace(`/admin/dashboard/users/${resp.user?.id}`);
+		router.replace(`/admin/users/${resp.user?.id}`);
 	};
 
 	return (

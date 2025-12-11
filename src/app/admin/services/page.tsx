@@ -48,7 +48,7 @@ export default async function ServicePage({ searchParams }: Props) {
 				{/* Search */}
 				<ServiceSearchInput />
 
-				<Link href="/admin/dashboard/services/new">
+				<Link href="/admin/services/new">
 					<Button className="btn-primary">
 						<Plus className="mr-2 h-4 w-4" />
 						Agregar Servicio

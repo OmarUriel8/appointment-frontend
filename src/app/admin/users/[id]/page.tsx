@@ -13,7 +13,7 @@ export default async function UserPage({ params }: Props) {
 	const user = await getUserById(id);
 
 	if (!user && id !== 'new') {
-		return redirect('/admin/dashboard/users');
+		return redirect('/admin/users');
 	}
 
 	const title = id === 'new' ? 'Nuevo usuario' : 'Editar usuario';

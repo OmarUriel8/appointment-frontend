@@ -29,7 +29,7 @@ export const TableRowEmployee = ({ employee }: Props) => {
 			</TableCell>
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">
-					<Link href={`/admin/dashboard/users/${employee.id}`}>
+					<Link href={`/admin/users/${employee.id}`}>
 						<TooltipButton title="Editar usuario">
 							<Button
 								variant="ghost"
@@ -40,7 +40,7 @@ export const TableRowEmployee = ({ employee }: Props) => {
 							</Button>
 						</TooltipButton>
 					</Link>
-					<Link href={`/admin/dashboard/employees/${employee.id}`}>
+					<Link href={`/admin/employees/${employee.id}`}>
 						<TooltipButton title="Editar horario">
 							<Button
 								variant="ghost"

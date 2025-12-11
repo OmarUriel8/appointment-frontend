@@ -14,7 +14,7 @@ export default async function AdminServicesPage({ params }: Props) {
 	const title = slug === 'new' ? 'Nuevo servicio' : 'Editar servicio';
 
 	if (!service && slug !== 'new') {
-		return redirect('/admin/dashboard/services');
+		return redirect('/admin/services');
 	}
 
 	return (

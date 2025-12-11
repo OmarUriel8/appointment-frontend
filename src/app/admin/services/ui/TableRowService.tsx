@@ -41,7 +41,7 @@ export const TableRowService = ({ service }: Props) => {
 			<TableCell>{service.duration} min</TableCell>
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">
-					<Link href={`/admin/dashboard/services/${service.id}`}>
+					<Link href={`/admin/services/${service.id}`}>
 						<TooltipButton title="Editar servicio">
 							<Button
 								variant="ghost"

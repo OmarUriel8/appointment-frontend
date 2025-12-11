@@ -136,7 +136,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 		let messageSuccess = slug === 'new' ? `Servicio creado` : 'Servicio actualizado';
 		toast.success(messageSuccess);
 		setLoading(false);
-		router.replace(`/admin/dashboard/services/${resp.service?.slug}`);
+		router.replace(`/admin/services/${resp.service?.slug}`);
 	};
 	return (
 		<Card>

@@ -44,7 +44,7 @@ export default async function EmployeePage({ searchParams }: Props) {
 					subtitle="Administra los empleados y sus horarios"
 				/>
 
-				<Link href="/admin/dashboard/user/new?role=employee">
+				<Link href="/admin/duser/new?role=employee">
 					<Button className="btn-primary">
 						<Plus className="mr-2 h-4 w-4" />
 						Agregar Empleado

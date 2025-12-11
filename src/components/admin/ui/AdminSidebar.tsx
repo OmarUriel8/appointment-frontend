@@ -26,22 +26,22 @@ const menuItems = [
 	},
 	{
 		title: 'Usuarios',
-		href: '/admin/dashboard/users',
+		href: '/admin/users',
 		icon: Users,
 	},
 	{
 		title: 'Servicios',
-		href: '/admin/dashboard/services',
+		href: '/admin/services',
 		icon: Briefcase,
 	},
 	{
 		title: 'Empleados',
-		href: '/admin/dashboard/employees',
+		href: '/admin/employees',
 		icon: UserCheck,
 	},
 	{
 		title: 'Clientes',
-		href: '/admin/dashboard/clients',
+		href: '/admin/clients',
 		icon: Calendar,
 	},
 	// {
