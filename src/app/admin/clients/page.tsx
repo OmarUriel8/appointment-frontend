@@ -43,7 +43,7 @@ export default async function ClientPage({ searchParams }: Props) {
 					subtitle="Administra los clientes registrados"
 				/>
 
-				<Link href="/admin/user/new?role=client">
+				<Link href="/admin/users/new?role=client">
 					<Button className="btn-primary">
 						<Plus className="mr-2 h-4 w-4" />
 						Agregar Cliente
@@ -63,7 +63,8 @@ export default async function ClientPage({ searchParams }: Props) {
 				</CardContent>
 			</Card>
 
-			{/* Vista de detalles mock */}
+			{/* 
+			// Vista de detalles mock
 			<Card>
 				<CardHeader>
 					<CardTitle>Detalles del cliente</CardTitle>
@@ -90,7 +91,7 @@ export default async function ClientPage({ searchParams }: Props) {
 						</div>
 					</div>
 				</CardContent>
-			</Card>
+			</Card> */}
 		</div>
 	);
 }

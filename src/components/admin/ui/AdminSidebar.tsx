@@ -8,6 +8,7 @@ import {
 	LogOut,
 	Settings,
 	UserCheck,
+	UserLock,
 	Users,
 	X,
 } from 'lucide-react';
@@ -37,11 +38,16 @@ const menuItems = [
 	{
 		title: 'Empleados',
 		href: '/admin/employees',
-		icon: UserCheck,
+		icon: UserLock,
 	},
 	{
 		title: 'Clientes',
 		href: '/admin/clients',
+		icon: UserCheck,
+	},
+	{
+		title: 'Citas',
+		href: '/admin/appointments',
 		icon: Calendar,
 	},
 	// {

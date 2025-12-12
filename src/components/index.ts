@@ -27,3 +27,5 @@ export * from './ui/title/Title';
 export * from './ui/checkbox';
 export * from './ui/tooltip';
 export * from './ui/tooltip-button/TooltipButton';
+export * from './ui/card-user-information/CardUserInformation';
+export * from './employee/WeeklyChedule';

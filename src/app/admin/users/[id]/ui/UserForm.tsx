@@ -24,6 +24,7 @@ import { toast } from 'sonner';
 interface Props {
 	user?: User;
 	id: string;
+	role: string;
 }
 
 interface InputForm {
@@ -35,7 +36,7 @@ interface InputForm {
 	password: string;
 }
 
-export const UserForm = ({ user, id }: Props) => {
+export const UserForm = ({ user, id, role }: Props) => {
 	const router = useRouter();
 
 	const [loading, setLoading] = useState(false);
@@ -47,7 +48,7 @@ export const UserForm = ({ user, id }: Props) => {
 		register,
 		control,
 	} = useForm<InputForm>({
-		defaultValues: { ...user },
+		defaultValues: { ...user, role: role !== '' ? (role as UserRole) : user?.role },
 	});
 
 	let configPassword = !user ? { required: true } : {};

@@ -1,6 +1,11 @@
 import { AdminSidebar, AdminTopbar } from '@/components';
+import { Metadata } from 'next';
 import { Toaster } from 'sonner';
 
+export const metadata: Metadata = {
+	title: 'Admin',
+	description: 'Panel administrativo',
+};
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="flex h-screen overflow-hidden">
