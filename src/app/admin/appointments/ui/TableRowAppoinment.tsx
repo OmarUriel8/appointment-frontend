@@ -26,6 +26,8 @@ interface Props {
 	appointment: Appointment;
 }
 
+const statusReadOnly = ['CANCELLED', 'COMPLETED'];
+
 export const TableRowAppoinment = ({ appointment }: Props) => {
 	const setOpenCloseDialog = useAppointmentToCancel((store) => store.setOpenCloseDialog);
 	const setAppointmentToCancel = useAppointmentToCancel(
@@ -68,7 +70,7 @@ export const TableRowAppoinment = ({ appointment }: Props) => {
 			</TableCell>
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">
-					{!['CANCELLED', 'COMPLETED'].includes(appointment.status) && (
+					{!statusReadOnly.includes(appointment.status) && (
 						<Select onValueChange={handleStatusChange} defaultValue={appointment.status}>
 							<SelectTrigger className="w-[180px]">
 								<SelectValue placeholder="Selecciona un estatus" />
@@ -84,7 +86,7 @@ export const TableRowAppoinment = ({ appointment }: Props) => {
 							</SelectContent>
 						</Select>
 					)}
-					<Link href={`/admin/appointment/view/${appointment.id}`}>
+					<Link href={`/admin/appointments/view/${appointment.id}`}>
 						<TooltipButton title="Ver cita">
 							<Button
 								variant="ghost"
@@ -95,8 +97,8 @@ export const TableRowAppoinment = ({ appointment }: Props) => {
 							</Button>
 						</TooltipButton>
 					</Link>
-					{!['CANCELLED', 'COMPLETED'].includes(appointment.status) && (
-						<Link href={`/admin/appointment/${appointment.id}`}>
+					{!statusReadOnly.includes(appointment.status) && (
+						<Link href={`/admin/appointments/${appointment.id}`}>
 							<TooltipButton title="Editar cita">
 								<Button
 									variant="ghost"

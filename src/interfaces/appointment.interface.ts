@@ -1,4 +1,4 @@
-import { Service } from './service.interface';
+import { ApiService, Service } from './service.interface';
 import { User } from './user.interface';
 
 export interface Testimonial {
@@ -18,7 +18,21 @@ export type AppointmentStatus =
 export interface ApiAppointment {
 	total: number;
 	pages: number;
-	appointments: Appointment[];
+	appointments: AppointmentResponse[];
+}
+
+export interface AppointmentResponse {
+	id: number;
+	date: Date;
+	startTime: string;
+	endTime: string;
+	status: AppointmentStatus;
+	notes: string;
+	comments: string;
+	score: number;
+	client: User;
+	employee: User;
+	service: ApiService;
 }
 
 export interface Appointment {

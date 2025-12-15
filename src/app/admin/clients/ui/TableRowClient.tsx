@@ -52,7 +52,7 @@ export const TableRowClient = ({ client }: Props) => {
 							</Button>
 						</TooltipButton>
 					</Link>
-					<Link href={`/admin/apointments/new/?idClient=${client.id}`}>
+					<Link href={`/admin/appointments/new/?idClient=${client.id}`}>
 						<TooltipButton title="Agregar nueva cita">
 							<Button
 								variant="ghost"
