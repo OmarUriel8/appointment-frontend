@@ -17,7 +17,7 @@ export const TableRowUser = ({ user }: Props) => {
 	const { handleChangeStatus, isLoading } = useUserStatusChange('Usuario');
 
 	return (
-		<TableRow key={user.id}>
+		<TableRow>
 			<TableCell className="font-medium">{user.name}</TableCell>
 			<TableCell>{user.email}</TableCell>
 			<TableCell>{user.role}</TableCell>

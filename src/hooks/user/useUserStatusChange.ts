@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 
 export const useUserStatusChange = (tipo: string) => {
 	const [isLoading, setIsLoading] = useState(false);
+
 	const handleChangeStatus = async (id: string, isActive: boolean) => {
 		setIsLoading(true);
 

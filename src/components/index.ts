@@ -29,3 +29,4 @@ export * from './ui/tooltip';
 export * from './ui/tooltip-button/TooltipButton';
 export * from './ui/card-user-information/CardUserInformation';
 export * from './employee/WeeklyChedule';
+export * from './ui/textarea';

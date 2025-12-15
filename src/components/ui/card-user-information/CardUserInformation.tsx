@@ -61,10 +61,10 @@ export const CardUserInformation = ({ user, appointments }: Props) => {
 								<p>No hay citas por realizar</p>
 							) : (
 								<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-									{appointments.map((apointment) => (
+									{appointments.map((appointment) => (
 										<CardAppointment
-											key={apointment.id}
-											apointment={apointment}
+											key={appointment.id}
+											apointment={appointment}
 											role={user.role}
 										/>
 									))}

@@ -29,7 +29,7 @@ export const TableRowService = ({ service }: Props) => {
 	};
 
 	return (
-		<TableRow key={service.id}>
+		<TableRow>
 			<TableCell className="font-medium">
 				<Link href={`/service/${service.slug}`}>
 					<Image src={service.images[0]} width={30} height={30} alt={service.name} />

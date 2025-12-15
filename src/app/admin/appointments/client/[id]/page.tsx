@@ -1,10 +1,5 @@
-import {
-	getAppointmentByClientIdPagination,
-	getAppointmentByEmployeeIdPagination,
-	getScheduleByEmployeeId,
-	getUserById,
-} from '@/actions';
-import { CardUserInformation, DashboardTitle } from '@/components';
+import { getAppointmentByClientIdPagination, getUserById } from '@/actions';
+import { CardUserInformation } from '@/components';
 import { redirect } from 'next/navigation';
 
 interface Props {
@@ -34,7 +29,7 @@ export default async function AppointmentByClientPage({ params }: Props) {
 	}
 
 	const appointments = [...appointment1.appointments, ...appointment2.appointments];
-	console.log(appointments);
+
 	return (
 		<div className="space-y-6">
 			<CardUserInformation user={user} appointments={appointments} />
