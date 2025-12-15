@@ -1,10 +1,10 @@
-import { Appointment, User } from '@/interfaces';
+import { AppointmentResponse, User } from '@/interfaces';
 import { Card, CardContent, CardHeader, CardTitle } from '../card';
 import { CardAppointment } from './CardAppointment';
 
 interface Props {
 	user: User;
-	appointments: Appointment[];
+	appointments: AppointmentResponse[];
 }
 export const CardUserInformation = ({ user, appointments }: Props) => {
 	const role = user.role === 'CLIENT' ? 'Cliente' : 'Empleado';

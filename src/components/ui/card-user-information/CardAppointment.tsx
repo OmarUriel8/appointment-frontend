@@ -1,11 +1,11 @@
-import { Appointment, UserRole } from '@/interfaces';
+import { AppointmentResponse, UserRole } from '@/interfaces';
 import { Card, CardContent } from '../card';
 import Link from 'next/link';
 import { formatAppointmentStatus, formatTime } from '@/utils';
 import { cn } from '@/lib/utils';
 
 interface Props {
-	apointment: Appointment;
+	apointment: AppointmentResponse;
 	role: UserRole;
 }
 export const CardAppointment = ({ apointment: appointment, role }: Props) => {

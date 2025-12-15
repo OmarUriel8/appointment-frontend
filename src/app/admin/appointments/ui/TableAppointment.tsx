@@ -6,11 +6,11 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components';
-import { Appointment } from '@/interfaces';
+import { AppointmentResponse } from '@/interfaces';
 import { TableRowAppoinment } from './TableRowAppoinment';
 
 interface Props {
-	appointments: Appointment[];
+	appointments: AppointmentResponse[];
 }
 
 export const TableAppointment = ({ appointments }: Props) => {

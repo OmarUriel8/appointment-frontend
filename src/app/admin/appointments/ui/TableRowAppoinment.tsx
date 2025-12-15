@@ -14,7 +14,7 @@ import {
 	TableRow,
 	TooltipButton,
 } from '@/components';
-import { Appointment, AppointmentStatus } from '@/interfaces';
+import { AppointmentResponse, AppointmentStatus } from '@/interfaces';
 import { cn } from '@/lib/utils';
 import { useAppointmentToCancel } from '@/store';
 import { formatAppointmentStatus, formatDate, formatTime } from '@/utils';
@@ -23,7 +23,7 @@ import Link from 'next/link';
 import { toast } from 'sonner';
 
 interface Props {
-	appointment: Appointment;
+	appointment: AppointmentResponse;
 }
 
 const statusReadOnly = ['CANCELLED', 'COMPLETED'];
