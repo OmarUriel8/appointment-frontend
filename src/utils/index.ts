@@ -5,3 +5,4 @@ export * from './format-date';
 export * from './format-error-api';
 export * from './format-time';
 export * from './generate-pagination-numbers';
+export * from './format-date-string';

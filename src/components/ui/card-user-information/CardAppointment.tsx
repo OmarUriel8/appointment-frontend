@@ -1,7 +1,12 @@
 import { AppointmentResponse, UserRole } from '@/interfaces';
 import { Card, CardContent } from '../card';
 import Link from 'next/link';
-import { formatAppointmentStatus, formatTime } from '@/utils';
+import {
+	formatAppointmentStatus,
+	formatDate,
+	formatDateString,
+	formatTime,
+} from '@/utils';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -26,7 +31,9 @@ export const CardAppointment = ({ apointment: appointment, role }: Props) => {
 				{/* Fecha */}
 				<div className="flex justify-between">
 					<span className="text-muted-foreground">Fecha:</span>
-					<span className="font-medium">{appointment.date.toString()}</span>
+					<span className="font-medium">
+						{formatDateString(appointment.date.toString())}
+					</span>
 				</div>
 
 				{/* Horario */}

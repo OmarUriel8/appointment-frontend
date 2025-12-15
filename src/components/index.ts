@@ -31,3 +31,5 @@ export * from './ui/card-user-information/CardUserInformation';
 export * from './employee/WeeklyChedule';
 export * from './ui/textarea';
 export * from './appointment/AppointmentCard';
+export * from './ui/calendar';
+export * from './ui/popover';

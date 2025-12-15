@@ -14,6 +14,7 @@ import { TableAppointment } from './ui/TableAppointment';
 import { getAppointmentPagination } from '@/actions';
 import { AppointmentStatus } from '@/interfaces';
 import { AppointmentToCancelDialog } from './ui/AppointmentToCancelDialog';
+import { FilterAppoitment } from './ui/FilterAppoitment';
 
 interface Props {
 	searchParams: Promise<{ page: string; limit: string; date: string; status: string }>;
@@ -35,7 +36,6 @@ export default async function AppointmentPage({ searchParams }: Props) {
 		status,
 		date,
 	});
-	console.log(appointments);
 
 	return (
 		<div className="space-y-6">
@@ -57,6 +57,7 @@ export default async function AppointmentPage({ searchParams }: Props) {
 					<CardTitle>Lista de citas</CardTitle>
 				</CardHeader>
 				<CardContent>
+					<FilterAppoitment />
 					<TableAppointment appointments={appointments} />
 					<Pagination totalPages={pages!} />
 				</CardContent>

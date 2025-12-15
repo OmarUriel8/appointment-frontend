@@ -1,6 +1,6 @@
 import { Appointment } from '@/interfaces';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { formatAppointmentStatus, formatDate, formatTime } from '@/utils';
+import { formatAppointmentStatus, formatDateString, formatTime } from '@/utils';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Clock, DollarSign, Star } from 'lucide-react';
@@ -30,7 +30,7 @@ export const AppointmentCard = ({ appointment }: Props) => {
 
 					<InfoRow label="Vendedor">{appointment.employee.name}</InfoRow>
 
-					<InfoRow label="Fecha">{formatDate(new Date(appointment.date))}</InfoRow>
+					<InfoRow label="Fecha">{formatDateString(appointment.date.toString())}</InfoRow>
 
 					<InfoRow label="Horario">
 						{formatTime(appointment.startTime)} – {formatTime(appointment.endTime)}

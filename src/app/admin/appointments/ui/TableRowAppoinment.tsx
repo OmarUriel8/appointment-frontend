@@ -17,7 +17,12 @@ import {
 import { AppointmentResponse, AppointmentStatus } from '@/interfaces';
 import { cn } from '@/lib/utils';
 import { useAppointmentToCancel } from '@/store';
-import { formatAppointmentStatus, formatDate, formatTime } from '@/utils';
+import {
+	formatAppointmentStatus,
+	formatDate,
+	formatDateString,
+	formatTime,
+} from '@/utils';
 import { Edit, Eye } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
@@ -49,7 +54,7 @@ export const TableRowAppoinment = ({ appointment }: Props) => {
 	return (
 		<TableRow>
 			<TableCell className="font-medium">{appointment.id}</TableCell>
-			<TableCell>{formatDate(new Date(appointment.date))}</TableCell>
+			<TableCell>{formatDateString(appointment.date.toString())}</TableCell>
 			<TableCell>
 				{formatTime(appointment.startTime)} - {formatTime(appointment.endTime)}
 			</TableCell>
