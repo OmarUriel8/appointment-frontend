@@ -33,8 +33,8 @@ export const updateStatusService = async ({ isActive, id }: Props) => {
 		}
 		const service: Service = await resp.json();
 
-		revalidatePath('admin/dashboard/services');
-		revalidatePath(`admin/dashboard/services/${service.id}`);
+		revalidatePath('admin/services');
+		revalidatePath(`admin/services/${service.id}`);
 		revalidatePath(`services`);
 		revalidatePath(`service/${service.slug}`);
 		return {

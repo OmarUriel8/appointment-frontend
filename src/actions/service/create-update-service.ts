@@ -56,8 +56,8 @@ export const createUpdateService = async ({
 		}
 		const service: Service = await resp.json();
 
-		revalidatePath('admin/dashboard/services');
-		revalidatePath(`admin/dashboard/services/${service.slug}`);
+		revalidatePath('admin/services');
+		revalidatePath(`admin/services/${service.slug}`);
 		revalidatePath(`services`);
 		revalidatePath(`service/${service.slug}`);
 		revalidatePath(`/`);

@@ -38,16 +38,16 @@ export const updateStatusUser = async ({ id, isActive }: CreateUpdateProps) => {
 
 		const user: User = await resp.json();
 
-		revalidatePath('admin/dashboard/users');
-		revalidatePath(`admin/dashboard/users/${user.id}`);
+		revalidatePath('admin/users');
+		revalidatePath(`admin/users/${user.id}`);
 		revalidatePath(`/`);
 		if (user.role === 'CLIENT') {
-			revalidatePath('admin/dashboard/clients');
-			revalidatePath(`admin/dashboard/clients/${user.id}`);
+			revalidatePath('admin/clients');
+			revalidatePath(`admin/clients/${user.id}`);
 		}
 		if (user.role === 'EMPLOYEE') {
-			revalidatePath('admin/dashboard/employees');
-			revalidatePath(`admin/dashboard/employees/${user.id}`);
+			revalidatePath('admin/employees');
+			revalidatePath(`admin/employees/${user.id}`);
 		}
 		return {
 			ok: true,

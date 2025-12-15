@@ -49,8 +49,8 @@ export const createUpdateUser = async ({
 
 		const user: User = await resp.json();
 
-		revalidatePath('admin/dashboard/users');
-		revalidatePath(`admin/dashboard/users/${user.id}`);
+		revalidatePath('admin/users');
+		revalidatePath(`admin/users/${user.id}`);
 		return {
 			ok: true,
 			user,
