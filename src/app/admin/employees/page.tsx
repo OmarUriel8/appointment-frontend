@@ -11,6 +11,12 @@ import {
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { TableEmployee } from './ui/TableEmployee';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Lista de empleados',
+	description: 'Lista de empleados',
+};
 
 interface Props {
 	searchParams: Promise<{

@@ -81,7 +81,7 @@ export const AppointmentCard = ({ appointment }: Props) => {
 						{appointment.service.description}
 					</p>
 
-					<div className="relative w-full overflow-hidden rounded-lg border">
+					<div className="relative w-full lg:w-[50%] overflow-hidden rounded-lg border">
 						<Image
 							src={appointment.service.images[0]}
 							width={500}

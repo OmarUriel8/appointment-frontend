@@ -33,3 +33,4 @@ export * from './ui/textarea';
 export * from './appointment/AppointmentCard';
 export * from './ui/calendar';
 export * from './ui/popover';
+export * from './ui/command';

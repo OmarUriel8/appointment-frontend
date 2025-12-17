@@ -1,5 +1,6 @@
 import { getAppointmentById } from '@/actions';
 import { AppointmentCard } from '@/components';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 interface Props {
@@ -7,6 +8,11 @@ interface Props {
 		id: string;
 	}>;
 }
+
+export const metadata: Metadata = {
+	title: 'Detalle de cita',
+	description: 'Detalles de cita',
+};
 
 export default async function AppointmentViewPage({ params }: Props) {
 	const id = (await params).id;

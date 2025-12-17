@@ -23,12 +23,9 @@ import { Checkbox } from '../ui/checkbox';
 import { createUpdateEmployeeSchedule } from '@/actions';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';
+import { createHours } from '@/utils';
 
-// Genera horas desde 06:00 a 22:00
-const hours = Array.from({ length: 15 }, (_, i) => {
-	const h = i + 8;
-	return `${h.toString().padStart(2, '0')}:00`;
-});
+const hours = createHours();
 
 interface Props {
 	initialSchedules: EmployeeSchedule[];

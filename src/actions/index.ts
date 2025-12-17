@@ -1,7 +1,11 @@
 export * from './api.config';
+export * from './appointment/create-update-appointment';
 export * from './appointment/get-appointment-by-client-id-pagination';
 export * from './appointment/get-appointment-by-employee-id-pagination';
+export * from './appointment/get-appointment-by-id';
 export * from './appointment/get-appointment-pagination';
+export * from './appointment/get-avaliable-employees';
+export * from './appointment/get-avaliable-hours';
 export * from './appointment/update-appointment-status';
 export * from './auth/login';
 export * from './auth/register-user';
@@ -15,4 +19,4 @@ export * from './service/update-status-service';
 export * from './user/get-user-by-id';
 export * from './user/get-users';
 export * from './user/update-status-user';
-export * from './appointment/get-appointment-by-id';
+export * from './user/create-update-user';

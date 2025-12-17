@@ -1,13 +1,29 @@
 export const revalidate = 604800; // 7 dias
 
 import { getServicePagination, getTestimonials } from '@/actions';
-import { Hero, ServiceCard, ServiceGrid } from '@/components';
+import { Hero, ServiceGrid } from '@/components';
 import { titleFont } from '@/config/font';
 import { benefits, howFuntion } from '@/config/information.data';
 import { cn } from '@/lib/utils';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Home',
+	description: 'Inicio AuraStudio',
+	openGraph: {
+		title: 'Home',
+		description: 'Inicio AuraStudio',
+		images: ['/logo.jpg'],
+	},
+};
 
 export default async function HomePage() {
-	const { services } = await getServicePagination({ page: 1, limit: 3, query: '' });
+	const { services } = await getServicePagination({
+		page: 1,
+		limit: 3,
+		query: '',
+		isActive: 'true',
+	});
 	const arrayTestimonials = await getTestimonials(3);
 
 	return (

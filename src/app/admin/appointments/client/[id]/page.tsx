@@ -1,5 +1,6 @@
 import { getAppointmentByClientIdPagination, getUserById } from '@/actions';
 import { CardUserInformation } from '@/components';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 interface Props {
@@ -7,6 +8,12 @@ interface Props {
 		id: string;
 	}>;
 }
+
+export const metadata: Metadata = {
+	title: 'Citas por cliente',
+	description: 'Citas por cliente',
+};
+
 export default async function AppointmentByClientPage({ params }: Props) {
 	const id = (await params).id;
 

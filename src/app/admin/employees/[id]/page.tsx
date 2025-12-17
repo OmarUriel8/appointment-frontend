@@ -5,8 +5,8 @@ import {
 } from '@/actions';
 import { CardUserInformation } from '@/components';
 import { WeeklySchedule } from '@/components/employee/WeeklyChedule';
-import { daysOfWeekMap, EmployeeSchedule } from '@/interfaces';
 import { createEmployeeSchedules } from '@/utils';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 interface Props {
@@ -14,6 +14,11 @@ interface Props {
 		id: string;
 	}>;
 }
+
+export const metadata: Metadata = {
+	title: 'Empleado',
+	description: 'Empleado',
+};
 
 export default async function EmployeePage({ params }: Props) {
 	const id = (await params).id;

@@ -1,4 +1,6 @@
 export const revalidate = 0;
+
+import { Metadata } from 'next';
 import {
 	Button,
 	Card,
@@ -17,8 +19,19 @@ import { AppointmentToCancelDialog } from './ui/AppointmentToCancelDialog';
 import { FilterAppoitment } from './ui/FilterAppoitment';
 
 interface Props {
-	searchParams: Promise<{ page: string; limit: string; date: string; status: string }>;
+	searchParams: Promise<{
+		page: string;
+		limit: string;
+		date: string;
+		status: string;
+		id: string;
+	}>;
 }
+
+export const metadata: Metadata = {
+	title: 'Lista de citas',
+	description: 'Lista de citas',
+};
 
 export default async function AppointmentPage({ searchParams }: Props) {
 	const page = (await searchParams).page ? parseInt((await searchParams).page) : 1;
@@ -30,11 +43,14 @@ export default async function AppointmentPage({ searchParams }: Props) {
 		? ((await searchParams).status as AppointmentStatus)
 		: undefined;
 
+	const id = (await searchParams).id ? (await searchParams).id : undefined;
+
 	const { appointments, pages, total } = await getAppointmentPagination({
 		page,
 		limit,
 		status,
 		date,
+		id: id ? +id : undefined,
 	});
 
 	return (
@@ -58,7 +74,9 @@ export default async function AppointmentPage({ searchParams }: Props) {
 				</CardHeader>
 				<CardContent>
 					<FilterAppoitment />
+
 					<TableAppointment appointments={appointments} />
+
 					<Pagination totalPages={pages!} />
 				</CardContent>
 			</Card>

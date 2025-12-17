@@ -2,6 +2,7 @@ import { getUserById } from '@/actions';
 import { DashboardTitle } from '@/components';
 import { redirect } from 'next/navigation';
 import { UserForm } from './ui/UserForm';
+import { Metadata } from 'next';
 
 interface Props {
 	params: Promise<{
@@ -11,6 +12,10 @@ interface Props {
 		role: string;
 	}>;
 }
+export const metadata: Metadata = {
+	title: 'Usuario',
+	description: 'Usuario',
+};
 
 export default async function UserPage({ params, searchParams }: Props) {
 	const id = (await params).id;

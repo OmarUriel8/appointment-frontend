@@ -12,6 +12,7 @@ import { TableService } from './ui/TableService';
 import { getServicePagination } from '@/actions';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
+import { Metadata } from 'next';
 
 interface Props {
 	searchParams: Promise<{
@@ -21,6 +22,11 @@ interface Props {
 		isActive: string;
 	}>;
 }
+
+export const metadata: Metadata = {
+	title: 'Lista de servicios',
+	description: 'Lista de servicios',
+};
 
 export default async function ServicePage({ searchParams }: Props) {
 	const page = (await searchParams).page ? parseInt((await searchParams).page!) : 1;

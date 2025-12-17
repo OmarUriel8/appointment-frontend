@@ -12,6 +12,7 @@ import { Plus } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getUsers } from '@/actions';
+import { Metadata } from 'next';
 
 interface Props {
 	searchParams: Promise<{
@@ -20,6 +21,11 @@ interface Props {
 		quyery: string;
 	}>;
 }
+
+export const metadata: Metadata = {
+	title: 'Lista de usuarios',
+	description: 'Lista de usuarios',
+};
 
 export default async function UserPage({ searchParams }: Props) {
 	const page = (await searchParams).page ? parseInt((await searchParams).page!) : 1;

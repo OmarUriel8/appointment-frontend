@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 		default: 'Inicio - AuraStudio',
 	},
 	description: 'Agenda tu cita fácil y rápido',
+	openGraph: {
+		images: ['/logo.jpg'],
+	},
 };
 
 export default function RootLayout({

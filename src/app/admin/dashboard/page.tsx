@@ -1,5 +1,11 @@
 import { DashboardCard } from '@/components';
 import { Users, Briefcase, UserCircle, Settings } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Dashboard',
+	description: 'Dashboard del sitio',
+};
 
 export default function DashboardPage() {
 	return (

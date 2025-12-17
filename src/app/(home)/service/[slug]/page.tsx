@@ -11,10 +11,26 @@ import {
 } from '@/components';
 import { Calendar, Clock, DollarSign } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 interface Props {
 	params: Promise<{ slug: string }>;
 }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const slug = (await params).slug;
+	const service = await getServiceByslugOrId(slug);
+	return {
+		title: service?.name ?? 'Servicio no encontrado',
+		description: service?.description ?? '',
+		openGraph: {
+			title: service?.name ?? 'Servicio no encontrado',
+			description: service?.description ?? '',
+			images: [`${service?.images[0]}`],
+		},
+	};
+}
+
 export default async function ServicePage({ params }: Props) {
 	const slug = (await params).slug;
 

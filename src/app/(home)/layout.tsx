@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { BackgroundGradient } from '../../components/ui/background/BackgroundGradient';
 
 export const metadata: Metadata = {
-	title: 'Prueba',
+	title: 'Home',
 	description: 'Servicios disponibles',
 };
 

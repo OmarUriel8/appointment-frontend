@@ -1,4 +1,6 @@
 import { getUsers } from '@/actions';
+import { Metadata } from 'next';
+import Link from 'next/link';
 import {
 	Button,
 	Card,
@@ -9,7 +11,7 @@ import {
 	DashboardTitle,
 } from '@/components';
 import { Plus } from 'lucide-react';
-import Link from 'next/link';
+
 import { TableClient } from './ui/TableClient';
 
 interface Props {
@@ -19,6 +21,11 @@ interface Props {
 		quyery: string;
 	}>;
 }
+
+export const metadata: Metadata = {
+	title: 'Lista de clientes',
+	description: 'Lista de clientes',
+};
 
 export default async function ClientPage({ searchParams }: Props) {
 	const page = (await searchParams).page ? parseInt((await searchParams).page) : 1;

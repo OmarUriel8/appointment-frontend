@@ -29,9 +29,10 @@ export const getServicePagination = async ({
 	}
 	if (isActive === 'all') {
 		params.delete('isActive');
-	} else {
-		params.append('isActive', 'true');
 	}
+	// else {
+	// 	params.append('isActive', 'true');
+	// }
 
 	if (page > 0) {
 		params.append('offset', ((page - 1) * limit).toString());
@@ -40,7 +41,7 @@ export const getServicePagination = async ({
 		params.append('serviceName', query);
 	}
 
-	// console.log(params);
+	//console.log(params);
 	const response = await fetch(`${baseUrl}/service?${params.toString()}`);
 
 	if (!response.ok) {

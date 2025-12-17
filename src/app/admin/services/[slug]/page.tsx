@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { getServiceByslugOrId } from '@/actions';
 import { DashboardTitle } from '@/components';
 import { redirect } from 'next/navigation';
@@ -6,6 +7,12 @@ import { ServiceForm } from './ui/ServiceForm';
 interface Props {
 	params: Promise<{ slug: string }>;
 }
+
+export const metadata: Metadata = {
+	title: 'Servicio',
+	description: 'Servicio',
+};
+
 export default async function AdminServicesPage({ params }: Props) {
 	const slug = (await params).slug;
 

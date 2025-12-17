@@ -9,6 +9,7 @@ interface AppointmentProps {
 	limit?: number;
 	status?: AppointmentStatus;
 	date?: Date;
+	id?: number | undefined;
 }
 
 export const getAppointmentPagination = async ({
@@ -16,12 +17,16 @@ export const getAppointmentPagination = async ({
 	limit = 12,
 	status = undefined,
 	date = undefined,
+	id = undefined,
 }: AppointmentProps): Promise<ApiAppointment> => {
 	if (isNaN(Number(page))) page = 1;
 	if (page < 1) page = 1;
 
 	if (isNaN(Number(limit))) limit = 12;
 	if (limit < 1) limit = 12;
+
+	if (isNaN(Number(id))) id = undefined;
+	if (id && id < 1) id = undefined;
 
 	const params = new URLSearchParams();
 	params.append('limit', limit.toString());
@@ -34,6 +39,10 @@ export const getAppointmentPagination = async ({
 	}
 	if (date) {
 		params.append('appointmentDate', date.toISOString());
+	}
+
+	if (id && id > 0) {
+		params.append('appointmentId', id.toString());
 	}
 
 	const session = await auth();
