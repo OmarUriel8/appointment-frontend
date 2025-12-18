@@ -59,6 +59,8 @@ export const createUpdateAppointment = async (createUpdateProps: CreateUpdatePro
 		revalidatePath(`/admin/appointments/view/${id}`);
 		revalidatePath(`/admin/appointments/client/${id}`);
 		revalidatePath(`/admin/appointments/${id}`);
+		revalidatePath(`/appointment/view/${id}`);
+		revalidatePath(`/appointments`);
 
 		return {
 			ok: true,

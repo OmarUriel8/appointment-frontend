@@ -1,17 +1,21 @@
-import { Appointment } from '@/interfaces';
+import { Appointment, UserRole } from '@/interfaces';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { formatAppointmentStatus, formatDateString, formatTime } from '@/utils';
+import { formatDate, formatTime } from '@/utils';
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
 import { Clock, DollarSign, Star } from 'lucide-react';
 import { InfoRow } from './InfoRow';
+import { AppointmentBadgeStatus } from './AppointmentBadgeStatus';
+import { AppointmentButtonCancel } from './AppointmentButtonCancel';
+import { AppointmentButtonComplete } from './AppointmentButtonComplete';
+import { AppointmentButtonScore } from './AppointmentButtonScore';
 
 interface Props {
 	appointment: Appointment;
+	role: UserRole;
 }
-export const AppointmentCard = ({ appointment }: Props) => {
+export const AppointmentCard = ({ appointment, role }: Props) => {
 	return (
-		<Card className="shadow-sm">
+		<Card className="max-w-4xl mx-auto overflow-hidden border-none shadow-lg">
 			<CardHeader className="border-b">
 				<CardTitle className="text-2xl font-semibold flex items-center gap-2">
 					Detalles de la cita
@@ -30,25 +34,15 @@ export const AppointmentCard = ({ appointment }: Props) => {
 
 					<InfoRow label="Vendedor">{appointment.employee.name}</InfoRow>
 
-					<InfoRow label="Fecha">{formatDateString(appointment.date.toString())}</InfoRow>
+					<InfoRow label="Fecha">{formatDate(appointment.date)}</InfoRow>
 
 					<InfoRow label="Horario">
 						{formatTime(appointment.startTime)} – {formatTime(appointment.endTime)}
 					</InfoRow>
 
-					<div className="flex items-center gap-2">
-						<span className="text-muted-foreground">Estatus:</span>
-						<span
-							className={cn('px-3 py-1 rounded-full text-xs font-semibold', {
-								'bg-red-100 text-red-700': appointment.status === 'CANCELLED',
-								'bg-green-100 text-green-700': appointment.status === 'COMPLETED',
-								'bg-yellow-100 text-yellow-700': appointment.status === 'PENDING',
-								'bg-blue-100 text-blue-700': appointment.status === 'CONFIRMED',
-							})}
-						>
-							{formatAppointmentStatus(appointment.status)}
-						</span>
-					</div>
+					<InfoRow label="Estatus">
+						<AppointmentBadgeStatus status={appointment.status} />
+					</InfoRow>
 
 					{appointment.notes && (
 						<div className="pt-2">
@@ -57,16 +51,59 @@ export const AppointmentCard = ({ appointment }: Props) => {
 						</div>
 					)}
 
-					{/* REVIEW */}
-					<div className="pt-4 border-t space-y-2">
-						<h3 className="text-lg font-semibold">Reseña del cliente</h3>
-
-						<div className="flex items-center gap-2">
-							<Star className="text-yellow-500 h-4 w-4" />
-							<span className="font-semibold">{appointment.score}</span>
+					{appointment.status === 'CANCELLED' && appointment.comments.length > 0 && (
+						<div className="pt-2">
+							<p className="uppercase font-bold text-xs mb-1 text-red-400">
+								Motivo de cancelación
+							</p>
+							<p>{appointment.comments}</p>
 						</div>
+					)}
 
-						<p className="text-muted-foreground text-sm">{appointment.comments}</p>
+					{appointment.score > 0 && (
+						<>
+							<hr />
+							<h3 className="text-lg font-semibold">Reseña del cliente</h3>
+							<div className="bg-muted/50 p-4 rounded-xl border border-muted-foreground/20">
+								<p className="flex items-center gap-2">
+									<Star className="text-yellow-500 h-4 w-4 fill-yellow-400" />
+									<span className="font-semibold">{appointment.score}</span>
+								</p>
+
+								<p className="text-sm italic">"{appointment.comments}"</p>
+							</div>
+						</>
+					)}
+
+					{/* Botones */}
+					<div className="border-t w-[50%] flex justify-between">
+						{role === 'ADMIN' ? (
+							<>
+								{(appointment.status === 'PENDING' ||
+									appointment.status === 'CONFIRMED') && (
+									<>
+										<AppointmentButtonComplete id={appointment.id} />
+										<AppointmentButtonCancel id={appointment.id} />
+									</>
+								)}
+								{appointment.status === 'COMPLETED' && (
+									<AppointmentButtonScore
+										id={appointment.id}
+										title="Dejar una reseña o modificar"
+									/>
+								)}
+							</>
+						) : (
+							<>
+								{(appointment.status === 'PENDING' ||
+									appointment.status === 'CONFIRMED') && (
+									<AppointmentButtonComplete id={appointment.id} />
+								)}
+								{appointment.status === 'PENDING' && (
+									<AppointmentButtonCancel id={appointment.id} />
+								)}
+							</>
+						)}
 					</div>
 				</div>
 

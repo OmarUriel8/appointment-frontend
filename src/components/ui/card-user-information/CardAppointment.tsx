@@ -8,6 +8,7 @@ import {
 	formatTime,
 } from '@/utils';
 import { cn } from '@/lib/utils';
+import { AppointmentBadgeStatus } from '@/components/appointment/AppointmentBadgeStatus';
 
 interface Props {
 	apointment: AppointmentResponse;
@@ -76,16 +77,7 @@ export const CardAppointment = ({ apointment: appointment, role }: Props) => {
 				{/* Estatus */}
 				<div className="flex justify-between">
 					<span className="text-muted-foreground">Estatus:</span>
-					<span
-						className={cn('font-semibold px-2 py-0.5 rounded-md', {
-							'bg-red-100 text-red-700': appointment.status === 'CANCELLED',
-							'bg-green-100 text-green-700': appointment.status === 'COMPLETED',
-							'bg-yellow-100 text-yellow-700': appointment.status === 'PENDING',
-							'bg-blue-100 text-blue-700': appointment.status === 'CONFIRMED',
-						})}
-					>
-						{formatAppointmentStatus(appointment.status)}
-					</span>
+					<AppointmentBadgeStatus status={appointment.status} />
 				</div>
 			</CardContent>
 		</Card>

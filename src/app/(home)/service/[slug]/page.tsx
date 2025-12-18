@@ -12,6 +12,7 @@ import {
 import { Calendar, Clock, DollarSign } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { currencyFormat } from '@/utils';
 
 interface Props {
 	params: Promise<{ slug: string }>;
@@ -71,7 +72,9 @@ export default async function ServicePage({ params }: Props) {
 						<div className="flex items-center gap-2">
 							<DollarSign className="h-5 w-5 text-primary" />
 							<span className="text-xl font-semibold">Precio:</span>
-							<span className="text-2xl font-bold text-primary">${service.price}</span>
+							<span className="text-2xl font-bold text-primary">
+								{currencyFormat(service.price)}
+							</span>
 						</div>
 						<div className="flex items-center gap-2">
 							<Clock className="h-5 w-5 text-primary" />

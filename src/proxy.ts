@@ -11,16 +11,19 @@ export async function proxy(req: Request) {
 	// }
 
 	// Proteger rutas privadas
-	if (!session && req.url.includes('/appointment')) {
-		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
-	}
-
-	// Proteger rutas privadas
 	if (!session && req.url.includes('/admin')) {
 		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
 	}
 
 	if (session?.user.role !== 'ADMIN' && req.url.includes('/admin')) {
+		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
+	}
+
+	if (!session && req.url.includes('/appointments')) {
+		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
+	}
+
+	if (!session && req.url.includes('/appointment')) {
 		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
 	}
 

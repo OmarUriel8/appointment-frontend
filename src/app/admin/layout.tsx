@@ -1,5 +1,4 @@
 import { AdminSidebar, AdminTopbar } from '@/components';
-import { Metadata } from 'next';
 import { Toaster } from 'sonner';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

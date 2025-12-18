@@ -41,6 +41,8 @@ export const updateAppointmentStatus = async (
 		revalidatePath(`/admin/appointments/view/${id}`);
 		revalidatePath(`/admin/appointments/client/${id}`);
 		revalidatePath(`/admin/appointments/${id}`);
+		revalidatePath(`/appointment/view/${id}`);
+		revalidatePath(`/appointments`);
 		return {
 			ok: true,
 			message: `Estatus actualizado a ${formatAppointmentStatus(status)}`,

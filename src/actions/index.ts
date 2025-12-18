@@ -19,4 +19,4 @@ export * from './service/update-status-service';
 export * from './user/get-user-by-id';
 export * from './user/get-users';
 export * from './user/update-status-user';
-export * from './user/create-update-user';
+export * from './appointment/update-apointment-score';

@@ -15,5 +15,6 @@ export const getTestimonials = async (limit: number): Promise<Testimonial[]> => 
 
 	const testimonials: Testimonial[] = await resp.json();
 
-	return testimonials.length === 0 ? testimonialsMook : testimonials;
+	const allTestimonials = [...testimonials, ...testimonialsMook].slice(0, 3);
+	return allTestimonials;
 };

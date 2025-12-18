@@ -1,10 +1,11 @@
 import { Service } from '@/interfaces';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import Image from 'next/image';
-import { Clock, DollarSign, MoreHorizontal } from 'lucide-react';
+import { Calendar, Clock, DollarSign, MoreHorizontal } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import { Button } from '../ui/button';
+import { currencyFormat } from '@/utils';
 
 interface Props {
 	service: Service;
@@ -50,7 +51,7 @@ export const ServiceCard = ({ service }: Props) => {
 				<div className="flex items-center gap-4 text-sm">
 					<div className="flex items-center gap-1">
 						<DollarSign className="h-4 w-4 text-primary" />
-						<span className="font-semibold">${service.price}</span>
+						<span className="font-semibold">{currencyFormat(service.price)}</span>
 					</div>
 					<div className="flex items-center gap-1">
 						<Clock className="h-4 w-4 text-primary" />
@@ -76,8 +77,11 @@ export const ServiceCard = ({ service }: Props) => {
 				)}
 			</CardContent>
 			<CardFooter>
-				<Link href={`/appoitment?service=${service.slug}`} className="w-full">
-					<Button className="w-full">Agendar servicio</Button>
+				<Link href={`/appointment/new?idService=${service.id}`} className="w-full">
+					<Button className="w-full">
+						<Calendar className="mr-2 h-5 w-5" />
+						Agendar cita
+					</Button>
 				</Link>
 			</CardFooter>
 		</Card>

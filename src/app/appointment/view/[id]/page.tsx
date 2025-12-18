@@ -2,6 +2,7 @@ import { getAppointmentById } from '@/actions';
 import { auth } from '@/auth';
 import {
 	AppointmentCard,
+	AppointmentCardClient,
 	AppointmentScoreDialog,
 	AppointmentToCancelDialog,
 } from '@/components';
@@ -21,13 +22,14 @@ export const metadata: Metadata = {
 
 export default async function AppointmentViewPage({ params }: Props) {
 	const id = (await params).id;
+
 	const session = await auth();
 	const role = session?.user.role;
 
 	const { ok, appoitment } = await getAppointmentById(id);
 
 	if (!ok) {
-		redirect('admin/appointments');
+		redirect('/appointments');
 	}
 
 	return (
@@ -35,7 +37,11 @@ export default async function AppointmentViewPage({ params }: Props) {
 			<AppointmentToCancelDialog />
 			<AppointmentScoreDialog />
 
-			<AppointmentCard appointment={appoitment!} role={role!} />
+			{role === 'EMPLOYEE' ? (
+				<AppointmentCard appointment={appoitment!} role={role!} />
+			) : (
+				<AppointmentCardClient role={role!} appointment={appoitment!} />
+			)}
 		</div>
 	);
 }

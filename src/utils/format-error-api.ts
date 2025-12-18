@@ -1,6 +1,7 @@
 export const formatErrorAPI = (err: any) => {
 	let errorMessage = '';
 	// Verifica si el error tiene la estructura de tu backend con un array de mensajes
+
 	if (err.message && Array.isArray(err.message)) {
 		// Une todos los mensajes en una sola cadena, separados por un punto y espacio.
 		errorMessage = err.message.join('. ');

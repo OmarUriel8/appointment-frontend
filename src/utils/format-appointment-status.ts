@@ -4,16 +4,16 @@ export const formatAppointmentStatus = (status: AppointmentStatus) => {
 	let nameStatus = '';
 	switch (status) {
 		case 'CANCELLED':
-			nameStatus = 'Cancelado';
+			nameStatus = 'Cancelada';
 			break;
 		case 'COMPLETED':
-			nameStatus = 'Completado';
+			nameStatus = 'Completada';
 			break;
 		case 'PENDING':
 			nameStatus = 'Pendiente';
 			break;
 		case 'CONFIRMED':
-			nameStatus = 'Confirmado';
+			nameStatus = 'Confirmada';
 			break;
 		default:
 			nameStatus = 'Pendiente';

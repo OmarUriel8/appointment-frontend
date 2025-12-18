@@ -26,10 +26,27 @@ export function Navbar() {
 							Todos los Servicios
 						</Button>
 					</Link>
+
 					{isClient && (
-						<Link href="/appointment">
+						<>
+							<Link href="/appointments">
+								<Button variant="link" size="sm">
+									Ver citas
+								</Button>
+							</Link>
+
+							<Link href="/appointment/new">
+								<Button variant="link" size="sm">
+									Agendar cita
+								</Button>
+							</Link>
+						</>
+					)}
+
+					{isEmployee && (
+						<Link href="/appointments">
 							<Button variant="link" size="sm">
-								Agendar cita
+								Ver agenda
 							</Button>
 						</Link>
 					)}
@@ -38,13 +55,6 @@ export function Navbar() {
 						<Link href="/admin/dashboard">
 							<Button variant="link" size="sm">
 								Dashboard
-							</Button>
-						</Link>
-					)}
-					{isEmployee && (
-						<Link href="#">
-							<Button variant="link" size="sm">
-								Ver agenda
 							</Button>
 						</Link>
 					)}
@@ -60,7 +70,6 @@ export function Navbar() {
 				<div className="flex items-center gap-4">
 					{isAuthenticated ? (
 						<Button
-							variant="ghost"
 							size="sm"
 							onClick={() => signOut()}
 							className="text-destructive hover:text-destructive hover:bg-destructive/10 bg-transparent mt-2"

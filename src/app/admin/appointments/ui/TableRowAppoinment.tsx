@@ -2,6 +2,7 @@
 
 import { updateAppointmentStatus } from '@/actions';
 import {
+	AppointmentBadgeStatus,
 	Button,
 	Select,
 	SelectContent,
@@ -15,14 +16,8 @@ import {
 	TooltipButton,
 } from '@/components';
 import { AppointmentResponse, AppointmentStatus } from '@/interfaces';
-import { cn } from '@/lib/utils';
 import { useAppointmentToCancel } from '@/store';
-import {
-	formatAppointmentStatus,
-	formatDate,
-	formatDateString,
-	formatTime,
-} from '@/utils';
+import { formatDateString, formatTime } from '@/utils';
 import { Edit, Eye } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
@@ -62,16 +57,7 @@ export const TableRowAppoinment = ({ appointment }: Props) => {
 			<TableCell>{appointment.employee.name}</TableCell>
 			<TableCell>{appointment.employee.name}</TableCell>
 			<TableCell>
-				<span
-					className={cn('rounded-full px-2 py-1 text-xs', {
-						'bg-red-100 text-red-700': appointment.status === 'CANCELLED',
-						'bg-green-100 text-green-700': appointment.status === 'COMPLETED',
-						'bg-yellow-100 text-yellow-700': appointment.status === 'PENDING',
-						'bg-blue-100 text-blue-700': appointment.status === 'CONFIRMED',
-					})}
-				>
-					{formatAppointmentStatus(appointment.status)}
-				</span>
+				<AppointmentBadgeStatus status={appointment.status} />
 			</TableCell>
 			<TableCell className="text-right">
 				<div className="flex justify-end gap-2">

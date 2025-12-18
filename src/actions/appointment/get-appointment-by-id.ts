@@ -2,7 +2,7 @@
 
 import { auth } from '@/auth';
 import { baseUrl } from '../api.config';
-import { formatErrorAPI } from '@/utils';
+import { formatDateString, formatErrorAPI, formatTime } from '@/utils';
 import { Appointment, AppointmentResponse } from '@/interfaces';
 
 export const getAppointmentById = async (id: string) => {
@@ -21,7 +21,7 @@ export const getAppointmentById = async (id: string) => {
 
 		const { service, ...rest }: AppointmentResponse = await res.json();
 
-		const appointment: Appointment = {
+		const { startTime, endTime, date, ...appointment }: Appointment = {
 			...rest,
 			service: {
 				...service,
@@ -32,7 +32,12 @@ export const getAppointmentById = async (id: string) => {
 
 		return {
 			ok: true,
-			appoitment: { ...appointment },
+			appoitment: {
+				...appointment,
+				startTime: formatTime(startTime),
+				endTime: formatTime(endTime),
+				date: new Date(`${date}T00:00:00`),
+			},
 		};
 	} catch (error: any) {
 		return {

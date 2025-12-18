@@ -95,12 +95,12 @@ export const RegisterForm = () => {
 							id="password"
 							type="password"
 							placeholder="••••••••"
-							{...register('password', { required: true })}
+							{...register('password', { required: true, minLength: 6 })}
 						/>
 						<div className="h-3">
 							{errors.password && (
 								<p className="text-sm font-medium text-red-500">
-									La contraseña es requerida
+									La contraseña es requerida y debe ser de minimo 6 caracteres
 								</p>
 							)}
 						</div>

@@ -20,7 +20,7 @@ export const Hero = () => {
 				Elige un servicio y reserva en minutos.
 			</p>
 
-			<Link href="/appointment">
+			<Link href="/appointment/new">
 				<Button size="lg" className="h-12 px-8 text-lg" variant="secondary">
 					<Calendar className="mr-2 h-5 w-5" />
 					Reservar ahora

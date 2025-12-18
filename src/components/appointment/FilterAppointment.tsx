@@ -1,12 +1,14 @@
 'use client';
 
+import { formatDate } from '@/utils';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRef, useState } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Button } from '../ui/button';
+import { BrushCleaning, ChevronDownIcon, Search } from 'lucide-react';
+import { Calendar } from '../ui/calendar';
+import { es } from 'date-fns/locale';
 import {
-	Button,
-	Calendar,
-	Input,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
 	Select,
 	SelectContent,
 	SelectGroup,
@@ -14,12 +16,8 @@ import {
 	SelectLabel,
 	SelectTrigger,
 	SelectValue,
-} from '@/components';
-import { formatDate } from '@/utils';
-import { es } from 'date-fns/locale';
-import { BrushCleaning, ChevronDownIcon, Search } from 'lucide-react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+} from '../ui/select';
+import { Input } from '../ui/input';
 
 export const FilterAppoitment = () => {
 	const router = useRouter();
@@ -84,13 +82,13 @@ export const FilterAppoitment = () => {
 	};
 
 	return (
-		<div className="my-4 flex gap-3">
+		<div className="my-4 flex gap-4">
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
 					<Button
 						variant="outline"
 						id="date"
-						className="w-48 justify-between font-normal"
+						className="w-48 justify-between font-normal bg-white dark:bg-background"
 					>
 						{date ? date.toLocaleDateString() : 'Selecciona una fecha'}
 						<ChevronDownIcon />
@@ -110,7 +108,7 @@ export const FilterAppoitment = () => {
 			</Popover>
 
 			<Select onValueChange={handleStatusChange} defaultValue={status}>
-				<SelectTrigger className="w-[180px]">
+				<SelectTrigger className="w-[180px] bg-white dark:bg-background">
 					<SelectValue placeholder="Selecciona un estatus" />
 				</SelectTrigger>
 				<SelectContent>
@@ -130,7 +128,7 @@ export const FilterAppoitment = () => {
 				<Input
 					ref={inputRef}
 					placeholder="Busca por el id de cita..."
-					className="pl-12 text-lg bg-white"
+					className="pl-12 text-lg  bg-white dark:bg-background"
 					onKeyDown={handelKeyDown}
 					defaultValue={id}
 				/>

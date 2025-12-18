@@ -35,7 +35,7 @@ export const getAppointmentByClientIdPagination = async ({
 		params.append('appointmentStatus', status);
 	}
 	if (date) {
-		params.append('appointmentDate', formatDate(date));
+		params.append('appointmentDate', date.toISOString());
 	}
 	const session = await auth();
 

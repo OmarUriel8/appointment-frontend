@@ -2,12 +2,15 @@ export const revalidate = 0;
 
 import { Metadata } from 'next';
 import {
+	AppointmentScoreDialog,
+	AppointmentToCancelDialog,
 	Button,
 	Card,
 	CardContent,
 	CardHeader,
 	CardTitle,
 	DashboardTitle,
+	FilterAppoitment,
 	Pagination,
 } from '@/components';
 import { Plus } from 'lucide-react';
@@ -15,8 +18,6 @@ import Link from 'next/link';
 import { TableAppointment } from './ui/TableAppointment';
 import { getAppointmentPagination } from '@/actions';
 import { AppointmentStatus } from '@/interfaces';
-import { AppointmentToCancelDialog } from './ui/AppointmentToCancelDialog';
-import { FilterAppoitment } from './ui/FilterAppoitment';
 
 interface Props {
 	searchParams: Promise<{
@@ -56,6 +57,7 @@ export default async function AppointmentPage({ searchParams }: Props) {
 	return (
 		<div className="space-y-6">
 			<AppointmentToCancelDialog />
+			<AppointmentScoreDialog />
 
 			<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
 				<DashboardTitle title="Gestión de Citas" subtitle="Administra las citas" />

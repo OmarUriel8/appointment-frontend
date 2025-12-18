@@ -50,6 +50,9 @@ interface InputForm {
 	serviceId: string;
 }
 
+let disabledDay = new Date();
+disabledDay.setDate(disabledDay.getDate() - 1);
+
 export const AdminAppointmentForm = ({
 	appointment,
 	id,
@@ -93,7 +96,7 @@ export const AdminAppointmentForm = ({
 	useEffect(() => {
 		if (!service || !date || !startTime) {
 			setAvaliableEmployee([]);
-			setValue('employeeId', '');
+			setValue('employeeId', appointment?.employee.id ?? '');
 			return;
 		}
 
@@ -117,7 +120,7 @@ export const AdminAppointmentForm = ({
 	useEffect(() => {
 		if (!date) {
 			setAvailableHours([]);
-			setValue('startTime', '');
+			setValue('startTime', appointment?.startTime ?? '');
 			return;
 		}
 
@@ -309,6 +312,7 @@ export const AdminAppointmentForm = ({
 												setOpen(false);
 											}}
 											captionLayout="dropdown"
+											disabled={(date) => date <= disabledDay}
 										/>
 									</PopoverContent>
 								</Popover>

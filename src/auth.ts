@@ -43,6 +43,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
 					return user;
 				} catch (err: any) {
+					console.log({ err });
 					throw new InvalidLoginError(err.message);
 				}
 			},
