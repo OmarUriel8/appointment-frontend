@@ -13,6 +13,7 @@ import { Calendar, Clock, DollarSign } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { currencyFormat } from '@/utils';
+import Link from 'next/link';
 
 interface Props {
 	params: Promise<{ slug: string }>;
@@ -96,10 +97,12 @@ export default async function ServicePage({ params }: Props) {
 					</CardContent>
 				</Card>
 
-				<Button size="lg" className="w-full text-lg">
-					<Calendar className="mr-2 h-5 w-5" />
-					Agendar cita
-				</Button>
+				<Link href={`/appointment/new?idService=${service.id}`} className="w-full">
+					<Button size="lg" className="w-full text-lg">
+						<Calendar className="mr-2 h-5 w-5" />
+						Agendar cita
+					</Button>
+				</Link>
 			</div>
 		</div>
 	);
