@@ -71,14 +71,14 @@ export const FilterDashboard = () => {
 	};
 
 	return (
-		<div className="my-4 flex gap-4">
+		<div className="my-4 flex gap-4 flex-col lg:flex-row">
 			{/* startDate  */}
 			<Popover open={openStartDate} onOpenChange={setOpenStartDate}>
 				<PopoverTrigger asChild>
 					<Button
 						variant="outline"
 						id="date"
-						className="w-48 justify-between font-normal bg-white dark:bg-background"
+						className="w-full lg:w-48 justify-between font-normal bg-white dark:bg-background"
 					>
 						{startDate ? startDate.toLocaleDateString() : 'Selecciona una fecha'}
 						<ChevronDownIcon />
@@ -104,7 +104,7 @@ export const FilterDashboard = () => {
 					<Button
 						variant="outline"
 						id="date"
-						className="w-48 justify-between font-normal bg-white dark:bg-background"
+						className="w-full lg:w-48 justify-between font-normal bg-white dark:bg-background"
 					>
 						{endDate ? endDate.toLocaleDateString() : 'Selecciona una fecha'}
 						<ChevronDownIcon />

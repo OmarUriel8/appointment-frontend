@@ -27,12 +27,26 @@ export async function proxy(req: Request) {
 		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
 	}
 
+	if (!session && req.url.includes('/profile')) {
+		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
+	}
+
+	if (session?.user.role !== 'CLIENT' && req.url.includes('/profile/client')) {
+		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
+	}
+
+	if (session?.user.role !== 'EMPLOYEE' && req.url.includes('/profile/employee')) {
+		return NextResponse.redirect(new URL(`/auth/login?redirectTo=${req.url}`, req.url));
+	}
+
 	return NextResponse.next();
 }
 
 export const config = {
 	matcher: [
+		'/profile/:path*',
 		'/appointment/:path*',
+		'/appointments/:path*',
 		'/dashboard/:path*',
 		'/admin/:path*',
 		'/((?!_next/static|_next/image|favicon.ico).*)', //excluir archivos estáticos

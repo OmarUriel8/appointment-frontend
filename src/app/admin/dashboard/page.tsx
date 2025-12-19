@@ -1,4 +1,4 @@
-import { getDashboardAdmin } from '@/actions/dashboard/get-dashboard-admin';
+import { getDashboardAdmin } from '@/actions';
 import {
 	DashboardCard,
 	DashboardListClientRanking,

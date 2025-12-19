@@ -9,6 +9,7 @@ export interface DashboardEmployee {
 export interface ReviewClient {
 	comments: string;
 	score: number;
+	id: number;
 }
 
 export interface ScoreAverage {

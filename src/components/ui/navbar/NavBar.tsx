@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { signOut, useSession } from 'next-auth/react';
-import { LogOut } from 'lucide-react';
+import { IdCard, LogOut } from 'lucide-react';
 import { Logo } from '../logo/Logo';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
@@ -59,8 +59,16 @@ export function Navbar() {
 						</Link>
 					)}
 
-					{isAuthenticated && (
-						<Link href="/profile">
+					{isAuthenticated && isClient && (
+						<Link href="/profile/client">
+							<Button variant="link" size="sm">
+								Mi perfil
+							</Button>
+						</Link>
+					)}
+
+					{isAuthenticated && isEmployee && (
+						<Link href="/profile/employee">
 							<Button variant="link" size="sm">
 								Mi perfil
 							</Button>

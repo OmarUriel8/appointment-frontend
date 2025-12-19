@@ -3,7 +3,7 @@ import { formatDateUtc, formatErrorAPI } from '@/utils';
 import { baseUrl } from '../api.config';
 import { DashboardEmployee } from '@/interfaces';
 
-export const getDashboardClient = async (startDate: Date, endDate: Date) => {
+export const getDashboardEmployee = async (startDate: Date, endDate: Date) => {
 	try {
 		const params = new URLSearchParams();
 		params.append('startDate', `${formatDateUtc(startDate)}T00:00:01Z`);
@@ -27,6 +27,7 @@ export const getDashboardClient = async (startDate: Date, endDate: Date) => {
 		return {
 			ok: true,
 			data,
+			user: sesion?.user,
 		};
 	} catch (error: any) {
 		return {

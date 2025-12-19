@@ -20,3 +20,6 @@ export * from './user/get-user-by-id';
 export * from './user/get-users';
 export * from './user/update-status-user';
 export * from './appointment/update-apointment-score';
+export * from './dashboard/get-dashboard-admin';
+export * from './dashboard/get-dashboard-client';
+export * from './dashboard/get-dashboard-employee';

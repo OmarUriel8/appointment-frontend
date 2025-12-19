@@ -27,6 +27,7 @@ export const getDashboardClient = async (startDate: Date, endDate: Date) => {
 		return {
 			ok: true,
 			data,
+			user: sesion?.user,
 		};
 	} catch (error: any) {
 		return {

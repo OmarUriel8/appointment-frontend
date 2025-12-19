@@ -3,14 +3,18 @@ import { Medal, Settings } from 'lucide-react';
 
 interface Props {
 	services: ServiceMostUsed[];
+	title?: string;
 }
-export const DashboardListServiceRanking = ({ services }: Props) => {
+export const DashboardListServiceRanking = ({
+	services,
+	title = 'Servicios Populares',
+}: Props) => {
 	const maxUsage = services.length > 0 ? Math.max(...services.map((s) => s.total)) : 0;
 	return (
 		<div className="rounded-lg border border-border/40 bg-card p-6">
 			<div className="flex items-center gap-2 mb-4">
 				<Settings className="h-5 w-5 text-primary" />
-				<h3 className="font-semibold text-card-foreground">Servicios Populares</h3>
+				<h3 className="font-semibold text-card-foreground">{title}</h3>
 			</div>
 
 			<div className="space-y-3">
