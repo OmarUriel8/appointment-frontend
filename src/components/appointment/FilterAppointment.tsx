@@ -1,6 +1,6 @@
 'use client';
 
-import { formatDate } from '@/utils';
+import { formatDate, isValidDate } from '@/utils';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
@@ -24,9 +24,12 @@ export const FilterAppoitment = () => {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const dateParam = searchParams.get('date')
-		? new Date(`${searchParams.get('date')!}T00:00:00`)
-		: undefined;
+	// const dateParam = searchParams.get('date')
+	// 	? new Date(`${searchParams.get('date')!}T00:00:00`)
+	// 	: undefined;
+
+	const queryDate = new Date(`${searchParams.get('date') ?? ''}T00:00:00`);
+	const dateParam = isValidDate(queryDate) ? queryDate : undefined;
 	const status = searchParams.get('status') ?? 'all';
 
 	const [open, setOpen] = useState(false);

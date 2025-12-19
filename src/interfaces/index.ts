@@ -4,3 +4,6 @@ export * from './appointment.interface';
 export * from './user.interface';
 export * from './employee-schedule';
 export * from './days-of-week';
+export * from './dashboard-admin.interface';
+export * from './dashboard-client.interface';
+export * from './dashboard-employee.interface';

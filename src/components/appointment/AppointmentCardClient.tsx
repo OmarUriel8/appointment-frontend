@@ -31,18 +31,18 @@ export const AppointmentCardClient = ({ appointment }: Props) => {
 				<div className="md:col-span-2 relative h-64 md:h-auto">
 					<Image
 						src={appointment.service.images[0]}
-						alt={appointment.service.name}
+						alt={appointment.nameService}
 						fill
 						className="object-cover"
 					/>
 					<div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white">
-						<h2 className="text-2xl font-bold">{appointment.service.name}</h2>
+						<h2 className="text-2xl font-bold">{appointment.nameService}</h2>
 						<div className="flex gap-4 mt-2 text-sm opacity-90">
 							<span className="flex items-center gap-1">
-								<Clock className="h-4 w-4" /> {appointment.service.duration} min
+								<Clock className="h-4 w-4" /> {appointment.durationMinutes} min
 							</span>
 							<span className="flex items-center gap-1">
-								{currencyFormat(appointment.service.price)}
+								{currencyFormat(appointment.price)}
 							</span>
 						</div>
 					</div>

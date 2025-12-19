@@ -33,6 +33,7 @@ export interface AppointmentResponse {
 	client: User;
 	employee: User;
 	service: ApiService;
+	price: number;
 }
 
 export interface Appointment {
@@ -47,4 +48,7 @@ export interface Appointment {
 	client: User;
 	employee: User;
 	service: Service;
+	price: number;
+	durationMinutes: number;
+	nameService: string;
 }

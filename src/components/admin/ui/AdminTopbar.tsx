@@ -4,6 +4,8 @@ import { signOut, useSession } from 'next-auth/react';
 import { useUIStorte } from '@/store';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { cn } from '@/lib/utils';
+import { titleFont } from '@/config/font';
 
 export const AdminTopbar = () => {
 	const openSideMenu = useUIStorte((store) => store.openSideMenu);
@@ -19,8 +21,8 @@ export const AdminTopbar = () => {
 			</Button>
 
 			<div className="flex justify-between flex-1 items-center">
-				<div className="lg:ml-64">
-					Bienvenido {session?.user.name} - {session?.user.role}
+				<div className={cn(`lg:ml-64 font-semibold ${titleFont.className}`)}>
+					Bienvenido {session?.user.name}
 				</div>
 				<div className="flex flex-1 items-center justify-end gap-4">
 					<Button

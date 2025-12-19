@@ -1,4 +1,3 @@
-export * from './admin/dashboard/DashboardCard';
 export * from './admin/ui/AdminSidebar';
 export * from './admin/ui/AdminTopbar';
 export * from './appointment/AppointmentBadgeStatus';
@@ -11,6 +10,10 @@ export * from './appointment/AppointmentEmpty';
 export * from './appointment/AppointmentScoreDialog';
 export * from './appointment/AppointmentToCancelDialog';
 export * from './appointment/FilterAppointment';
+export * from './dashboard/DashboardCard';
+export * from './dashboard/DashboardListClientRanking';
+export * from './dashboard/DashboardListServiceRanking';
+export * from './dashboard/FilterDashboard';
 export * from './employee/WeeklyChedule';
 export * from './service/ServiceCard';
 export * from './service/ServiceCarousel';

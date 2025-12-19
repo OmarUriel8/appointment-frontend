@@ -13,6 +13,7 @@ import {
 	Title,
 } from '@/components';
 import { AppointmentResponse, AppointmentStatus } from '@/interfaces';
+import { isValidDate } from '@/utils';
 
 interface Props {
 	searchParams: Promise<{
@@ -27,9 +28,10 @@ export default async function AppointmentPage({ searchParams }: Props) {
 	const session = await auth();
 	const page = (await searchParams).page ? parseInt((await searchParams).page) : 1;
 	const limit = (await searchParams).limit ? parseInt((await searchParams).limit) : 12;
-	const date = (await searchParams).date
-		? new Date((await searchParams).date)
-		: undefined;
+
+	const queryDate = new Date((await searchParams).date);
+	const date = isValidDate(queryDate) ? queryDate : undefined;
+
 	const status = (await searchParams).status
 		? ((await searchParams).status as AppointmentStatus)
 		: undefined;

@@ -5,3 +5,11 @@ export const formatDate = (date: Date) => {
 
 	return `${year}-${month}-${day}`;
 };
+
+export const formatDateUtc = (date: Date) => {
+	const year = date.getUTCFullYear();
+	const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+	const day = date.getUTCDate().toString().padStart(2, '0');
+
+	return `${year}-${month}-${day}`;
+};

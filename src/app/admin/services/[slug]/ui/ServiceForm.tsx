@@ -1,7 +1,7 @@
 'use client';
 
 import { createUpdateService } from '@/actions';
-import { Button, Card, CardContent, Checkbox, Input } from '@/components';
+import { Button, Card, CardContent, Checkbox, Input, Textarea } from '@/components';
 import { Service } from '@/interfaces';
 import { cn } from '@/lib/utils';
 import { Label } from '@radix-ui/react-label';
@@ -165,8 +165,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 
 						<div className="space-y-2">
 							<Label htmlFor="description">Descripción del servicio</Label>
-							<Input
-								type="text"
+							<Textarea
 								id="description"
 								placeholder="Descripción"
 								{...register('description', { required: true })}

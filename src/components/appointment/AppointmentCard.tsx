@@ -111,7 +111,7 @@ export const AppointmentCard = ({ appointment, role }: Props) => {
 				<div className="space-y-4">
 					<div>
 						<p className="text-muted-foreground text-sm">Servicio</p>
-						<p className="font-semibold">{appointment.service.name}</p>
+						<p className="font-semibold">{appointment.nameService}</p>
 					</div>
 
 					<p className="text-sm text-muted-foreground line-clamp-3">
@@ -123,7 +123,7 @@ export const AppointmentCard = ({ appointment, role }: Props) => {
 							src={appointment.service.images[0]}
 							width={500}
 							height={350}
-							alt={appointment.service.name}
+							alt={appointment.nameService}
 							className="object-cover w-full h-[220px]"
 						/>
 					</div>
@@ -131,12 +131,12 @@ export const AppointmentCard = ({ appointment, role }: Props) => {
 					<div className="flex gap-6 pt-2 text-sm">
 						<div className="flex items-center gap-1">
 							<DollarSign className="h-4 w-4 text-primary" />
-							<span className="font-semibold">${appointment.service.price}</span>
+							<span className="font-semibold">${appointment.price}</span>
 						</div>
 
 						<div className="flex items-center gap-1">
 							<Clock className="h-4 w-4 text-primary" />
-							<span>{appointment.service.duration} min</span>
+							<span>{appointment.durationMinutes} min</span>
 						</div>
 					</div>
 				</div>
