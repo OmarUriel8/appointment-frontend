@@ -1,3 +1,5 @@
+export const revalidate = 86400; // 1 dias
+
 import { getUsers } from '@/actions';
 import { Metadata } from 'next';
 import Link from 'next/link';

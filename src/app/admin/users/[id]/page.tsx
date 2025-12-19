@@ -1,3 +1,5 @@
+export const revalidate = 604800; // 7 dias
+
 import { getUserById } from '@/actions';
 import { DashboardTitle } from '@/components';
 import { redirect } from 'next/navigation';

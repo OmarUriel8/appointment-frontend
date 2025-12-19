@@ -1,3 +1,5 @@
+export const revalidate = 604800; // 7 dias
+
 import { Metadata } from 'next';
 import { getServiceByslugOrId } from '@/actions';
 import { DashboardTitle } from '@/components';

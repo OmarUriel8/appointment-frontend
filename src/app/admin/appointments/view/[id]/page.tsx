@@ -1,3 +1,4 @@
+export const revalidate = 604800; //7 dias
 import { getAppointmentById } from '@/actions';
 import { auth } from '@/auth';
 import {

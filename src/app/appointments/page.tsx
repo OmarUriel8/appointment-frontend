@@ -1,3 +1,5 @@
+export const revalidate = 604800; // 7 dia
+
 import { auth } from '@/auth';
 import { AppointmentGrid } from './ui/AppointmentGrid';
 import {

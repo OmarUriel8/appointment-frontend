@@ -1,3 +1,5 @@
+export const revalidate = 604800; // 7 dias
+
 import {
 	getAppointmentByEmployeeIdPagination,
 	getScheduleByEmployeeId,

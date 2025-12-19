@@ -1,3 +1,5 @@
+export const revalidate = 86400; // 1 dia
+
 import { getAppointmentById } from '@/actions';
 import { auth } from '@/auth';
 import {

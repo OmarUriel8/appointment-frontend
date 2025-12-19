@@ -1,4 +1,4 @@
-export const revalidate = 0;
+export const revalidate = 86400; //1 dia
 import { getAppointmentById, getServicePagination, getUsers } from '@/actions';
 import { DashboardTitle } from '@/components';
 import { redirect } from 'next/navigation';

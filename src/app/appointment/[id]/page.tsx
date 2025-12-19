@@ -1,3 +1,4 @@
+export const revalidate = 86400; // 1 dia
 import { getAppointmentById, getServicePagination } from '@/actions';
 import { auth } from '@/auth';
 import { Metadata } from 'next';
