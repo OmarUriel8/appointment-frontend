@@ -1,4 +1,6 @@
-import { getDashboardClient } from '@/actions';
+export const revalidate = 0;
+
+import { getDashboardClient, getUserById } from '@/actions';
 import {
 	Button,
 	DashboardCard,
@@ -6,8 +8,8 @@ import {
 	FilterDashboard,
 	Title,
 } from '@/components';
-import { currencyFormat, formatNumber, isValidDate } from '@/utils';
-import { Calendar, CalendarCheck, Mail, Phone, User } from 'lucide-react';
+import { formatNumber, isValidDate } from '@/utils';
+import { Calendar, CalendarCheck, Mail, Phone } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -37,20 +39,26 @@ export default async function ProfileClientPage({ searchParams }: Props) {
 		? new Date(queryEndDate.toISOString())
 		: new Date(defaultEndDate.toISOString());
 
-	const { ok, data, message, user } = await getDashboardClient(startDate, endDate);
-	let appointmentCompleted, appointmentPending, serviceMostUsed;
+	const {
+		ok,
+		data,
+		message,
+		user: userSession,
+	} = await getDashboardClient(startDate, endDate);
+	let appointmentCompleted, appointmentPending, serviceMostUsed, user;
 
 	if (data) {
 		appointmentCompleted = data.appointmentCompleted;
 		appointmentPending = data.appointmentPending;
 		serviceMostUsed = data.serviceMostUsed;
+		user = await getUserById(userSession?.id ?? '');
 	}
 
 	return (
 		<div className="mx-auto space-y-6 ">
 			<div className="flex lg:items-center gap-4 flex-col lg:flex-row lg:justify-between">
 				<Title title={`Bienvenido ${user?.name}`} subtitle="Informacion personal" />
-				<Link href={`/profile/client/${user?.id}`}>
+				<Link href={`/profile/client/${user?.email}`}>
 					<Button className="btn-primary">Editar datos personales</Button>
 				</Link>
 			</div>
@@ -58,7 +66,7 @@ export default async function ProfileClientPage({ searchParams }: Props) {
 			<div className="flex gap-4">
 				<Mail className="text-primary" /> {user?.email}
 			</div>
-			{(user?.phone || user?.phone !== '') ?? (
+			{user?.phone && (
 				<div className="flex gap-4">
 					<Phone className="text-primary" /> {user?.phone}
 				</div>

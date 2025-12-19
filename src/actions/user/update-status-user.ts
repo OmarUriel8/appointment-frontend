@@ -40,7 +40,7 @@ export const updateStatusUser = async ({ id, isActive }: CreateUpdateProps) => {
 
 		revalidatePath('admin/users');
 		revalidatePath(`admin/users/${user.id}`);
-		revalidatePath(`/`);
+
 		if (user.role === 'CLIENT') {
 			revalidatePath('admin/clients');
 			revalidatePath(`admin/clients/${user.id}`);
@@ -49,6 +49,7 @@ export const updateStatusUser = async ({ id, isActive }: CreateUpdateProps) => {
 			revalidatePath('admin/employees');
 			revalidatePath(`admin/employees/${user.id}`);
 		}
+
 		return {
 			ok: true,
 			user,

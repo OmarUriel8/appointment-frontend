@@ -51,6 +51,15 @@ export const createUpdateUser = async ({
 
 		revalidatePath('admin/users');
 		revalidatePath(`admin/users/${user.id}`);
+
+		if (user.role === 'CLIENT') {
+			revalidatePath(`profile/client/${user.email}`);
+		}
+
+		if (user.role === 'EMPLOYEE') {
+			revalidatePath(`profile/employee/${user.email}`);
+		}
+
 		return {
 			ok: true,
 			user,

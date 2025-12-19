@@ -1,4 +1,6 @@
-import { getDashboardEmployee } from '@/actions';
+export const revalidate = 0;
+
+import { getDashboardEmployee, getUserById } from '@/actions';
 import {
 	Button,
 	DashboardCard,
@@ -37,18 +39,24 @@ export default async function ProfileEmployeePage({ searchParams }: Props) {
 		? new Date(queryEndDate.toISOString())
 		: new Date(defaultEndDate.toISOString());
 
-	const { ok, data, message, user } = await getDashboardEmployee(startDate, endDate);
-	let reviewClient, scoreAverage, serviceMostUsed;
+	const {
+		ok,
+		data,
+		message,
+		user: userSession,
+	} = await getDashboardEmployee(startDate, endDate);
+	let reviewClient, scoreAverage, serviceMostUsed, user;
 
 	if (data) {
 		reviewClient = data.reviewClient;
 		scoreAverage = data.scoreAverage;
 		serviceMostUsed = data.serviceMostUsed;
+		user = await getUserById(userSession?.id ?? '');
 	}
 
 	return (
-		<div className="mx-auto space-y-6 ">
-			<div className="flex lg:items-center gap-4 flex-col lg:flex-row lg:justify-between">
+		<div className="space-y-6 ">
+			<div className="flex lg:items-center flex-col lg:flex-row lg:justify-between">
 				<Title title={`Bienvenido ${user?.name}`} subtitle="Informacion personal" />
 				<Link href={`/profile/employee/${user?.id}`}>
 					<Button className="btn-primary">Editar datos personales</Button>
