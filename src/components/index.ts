@@ -48,3 +48,4 @@ export * from './ui/title/Title';
 export * from './ui/tooltip-button/TooltipButton';
 export * from './ui/tooltip';
 export * from './dashboard/DashboradCommentsForEmployee';
+export * from './ui/sheet';

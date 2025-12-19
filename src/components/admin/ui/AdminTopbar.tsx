@@ -32,7 +32,7 @@ export const AdminTopbar = () => {
 						className="text-destructive hover:text-destructive hover:bg-destructive/10 bg-transparent mt-2"
 					>
 						<LogOut className="mr-1 h-4 w-4" />
-						Cerrar sesión
+						<span className="hidden sm:inline">Cerrar sesión</span>
 					</Button>
 					<ThemeToggle />
 				</div>

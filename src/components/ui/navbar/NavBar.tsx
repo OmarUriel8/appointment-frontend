@@ -2,13 +2,21 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { signOut, useSession } from 'next-auth/react';
-import { IdCard, LogOut } from 'lucide-react';
+import { LogOut, Menu, X } from 'lucide-react'; // Importamos Menu
 import { Logo } from '../logo/Logo';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import {
+	Sheet,
+	SheetClose,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from '@/components';
+import { NavLinks } from './NavLinks';
 
 export function Navbar() {
 	const { data: session } = useSession();
-
 	const isAuthenticated = !!session?.user;
 
 	const isAdmin = session?.user.role === 'ADMIN';
@@ -18,77 +26,63 @@ export function Navbar() {
 	return (
 		<nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
 			<div className="flex h-16 items-center justify-between px-4">
-				<Logo href="/" />
-
-				<div className="flex items-center gap-4">
-					<Link href="/services">
-						<Button variant="link" size="sm">
-							Todos los Servicios
-						</Button>
-					</Link>
-
-					{isClient && (
-						<>
-							<Link href="/appointments">
-								<Button variant="link" size="sm">
-									Ver citas
+				<div className="flex items-center gap-2">
+					{/* Menu Móvil (Visible solo en sm/md) */}
+					<div className="lg:hidden">
+						<Sheet>
+							<SheetTrigger asChild>
+								<Button variant="ghost" size="icon">
+									<Menu className="h-5 w-5" />
 								</Button>
-							</Link>
+							</SheetTrigger>
+							<SheetContent side="left" className="w-[250px] sm:w-[300px]">
+								<SheetHeader>
+									<SheetTitle className="text-left flex flex-col gap-2">Menú</SheetTitle>
+								</SheetHeader>
 
-							<Link href="/appointment/new">
-								<Button variant="link" size="sm">
-									Agendar cita
-								</Button>
-							</Link>
-						</>
-					)}
+								<div className="flex flex-col gap-2">
+									<NavLinks
+										className="flex flex-col space-y-2"
+										isAdmin={isAdmin}
+										isAuthenticated={isAuthenticated}
+										isClient={isClient}
+										isEmployee={isEmployee}
+									/>
+								</div>
+							</SheetContent>
+						</Sheet>
+					</div>
 
-					{isEmployee && (
-						<Link href="/appointments">
-							<Button variant="link" size="sm">
-								Ver agenda
-							</Button>
-						</Link>
-					)}
-
-					{isAdmin && (
-						<Link href="/admin/dashboard">
-							<Button variant="link" size="sm">
-								Dashboard
-							</Button>
-						</Link>
-					)}
-
-					{isAuthenticated && isClient && (
-						<Link href="/profile/client">
-							<Button variant="link" size="sm">
-								Mi perfil
-							</Button>
-						</Link>
-					)}
-
-					{isAuthenticated && isEmployee && (
-						<Link href="/profile/employee">
-							<Button variant="link" size="sm">
-								Mi perfil
-							</Button>
-						</Link>
-					)}
+					<Logo href="/" />
 				</div>
-				<div className="flex items-center gap-4">
+
+				{/* Desktop Links (Oculto en móviles, visible en lg) */}
+				<div className="hidden lg:flex items-center gap-4">
+					<NavLinks
+						className="flex items-center gap-4"
+						isAdmin={isAdmin}
+						isAuthenticated={isAuthenticated}
+						isClient={isClient}
+						isEmployee={isEmployee}
+					/>
+				</div>
+
+				{/* Auth y Theme */}
+				<div className="flex items-center gap-2">
 					{isAuthenticated ? (
 						<Button
 							size="sm"
 							onClick={() => signOut()}
-							className="text-destructive hover:text-destructive hover:bg-destructive/10 bg-transparent mt-2"
+							className="text-destructive hover:text-destructive hover:bg-destructive/10 bg-transparent"
 						>
 							<LogOut className="mr-1 h-4 w-4" />
-							Cerrar Sesión
+							<span className="hidden sm:inline">Cerrar Sesión</span>
 						</Button>
 					) : (
 						<Link href="/auth/login">
 							<Button variant="secondary" size="sm">
-								Iniciar Sesión
+								<LogOut className="mr-1 h-4 w-4" />
+								<span className="hidden sm:inline">Iniciar Sesión</span>
 							</Button>
 						</Link>
 					)}
