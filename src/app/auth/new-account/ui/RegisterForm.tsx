@@ -61,6 +61,7 @@ export const RegisterForm = () => {
 			</CardHeader>
 			<CardContent>
 				<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+					{/* name */}
 					<div className="space-y-2">
 						<Label htmlFor="name">Nombre completo</Label>
 						<Input
@@ -75,6 +76,8 @@ export const RegisterForm = () => {
 							)}
 						</div>
 					</div>
+
+					{/* Email */}
 					<div className="space-y-2">
 						<Label htmlFor="email">Email</Label>
 						<Input
@@ -89,6 +92,8 @@ export const RegisterForm = () => {
 							)}
 						</div>
 					</div>
+
+					{/* paswword */}
 					<div className="space-y-2">
 						<Label htmlFor="password">Contraseña</Label>
 						<Input
@@ -124,7 +129,7 @@ export const RegisterForm = () => {
 						</div>
 					)}
 
-					{/* divisor l ine */}
+					{/* login */}
 					<div className="flex items-center my-5">
 						<div className="flex-1 border-t border-gray-500"></div>
 						<div className="px-2">O</div>

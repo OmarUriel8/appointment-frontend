@@ -79,6 +79,7 @@ export const UserForm = ({ user, id, role }: Props) => {
 
 			<CardContent>
 				<form onSubmit={handleSubmit(onSubmit)}>
+					{/* name */}
 					<div className="space-y-2">
 						<Label htmlFor="name">Nombre completo</Label>
 						<Input
@@ -93,6 +94,8 @@ export const UserForm = ({ user, id, role }: Props) => {
 							)}
 						</div>
 					</div>
+
+					{/* email */}
 					<div className="space-y-2">
 						<Label htmlFor="email">Email</Label>
 						<Input
@@ -107,6 +110,8 @@ export const UserForm = ({ user, id, role }: Props) => {
 							)}
 						</div>
 					</div>
+
+					{/* phone */}
 					<div className="space-y-2">
 						<Label htmlFor="phone">Telefono</Label>
 						<Input
@@ -123,6 +128,8 @@ export const UserForm = ({ user, id, role }: Props) => {
 							)}
 						</div>
 					</div>
+
+					{/* role */}
 					<div className="space-y-2">
 						<Label htmlFor="role">Rol</Label>
 						<Controller
@@ -155,6 +162,8 @@ export const UserForm = ({ user, id, role }: Props) => {
 							)}
 						</div>
 					</div>
+
+					{/* password */}
 					<div className="space-y-2">
 						<Label htmlFor="password">Contraseña</Label>
 						<Input
@@ -175,6 +184,8 @@ export const UserForm = ({ user, id, role }: Props) => {
 							)}
 						</div>
 					</div>
+
+					{/* check active */}
 					<div className="space-y-2 mt-5">
 						<Controller
 							name="isActive"
@@ -193,6 +204,7 @@ export const UserForm = ({ user, id, role }: Props) => {
 						<div className="h-5"></div>
 					</div>
 
+					{/* Button */}
 					<div className="flex justify-end">
 						<Button className="btn-primary mt-7">
 							{loading ? (
@@ -213,9 +225,6 @@ export const UserForm = ({ user, id, role }: Props) => {
 					)}
 				</form>
 			</CardContent>
-			{/* <CardFooter>
-				
-			</CardFooter> */}
 		</Card>
 	);
 };

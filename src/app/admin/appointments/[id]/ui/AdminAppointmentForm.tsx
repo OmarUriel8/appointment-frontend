@@ -163,6 +163,7 @@ export const AdminAppointmentForm = ({
 
 			<CardContent>
 				<form onSubmit={handleSubmit(onSubmit)}>
+					{/* Client */}
 					<div className="space-y-2">
 						<Label htmlFor="clientId">Cliente</Label>
 						<Controller
@@ -220,6 +221,7 @@ export const AdminAppointmentForm = ({
 						</div>
 					</div>
 
+					{/* Service */}
 					<div className="space-y-2">
 						<Label htmlFor="serviceId">Servicio</Label>
 
@@ -278,6 +280,7 @@ export const AdminAppointmentForm = ({
 						</div>
 					</div>
 
+					{/* date */}
 					<div className="space-y-2">
 						<Label htmlFor="date">Dia para la cita</Label>
 						<Controller
@@ -324,6 +327,7 @@ export const AdminAppointmentForm = ({
 							)}
 						</div>
 					</div>
+					{/* startTime */}
 					<div className="space-y-2">
 						<Label htmlFor="startTime">Hora de inicio</Label>
 						<Controller
@@ -385,6 +389,8 @@ export const AdminAppointmentForm = ({
 							)}
 						</div>
 					</div>
+
+					{/* status */}
 					<div className="space-y-2">
 						<Label htmlFor="status">Estatus</Label>
 						<Controller
@@ -417,6 +423,8 @@ export const AdminAppointmentForm = ({
 							)}
 						</div>
 					</div>
+
+					{/* notes */}
 					<div className="space-y-2">
 						<Label htmlFor="notes">Notas</Label>
 						<Textarea
@@ -433,6 +441,7 @@ export const AdminAppointmentForm = ({
 						</div>
 					</div>
 
+					{/* employee */}
 					<div className="space-y-2">
 						<Label htmlFor="employeeId">Empleado</Label>
 
@@ -498,6 +507,7 @@ export const AdminAppointmentForm = ({
 						</div>
 					</div>
 
+					{/* button  */}
 					<div className="flex justify-end">
 						<Button className="btn-primary mt-7">
 							{loading ? (
@@ -518,9 +528,6 @@ export const AdminAppointmentForm = ({
 					)}
 				</form>
 			</CardContent>
-			{/* <CardFooter>
-				
-			</CardFooter> */}
 		</Card>
 	);
 };

@@ -69,6 +69,7 @@ export const LoginForm = () => {
 			</CardHeader>
 			<CardContent>
 				<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+					{/* email */}
 					<div className="space-y-2">
 						<Label htmlFor="email">Email</Label>
 						<Input
@@ -83,6 +84,8 @@ export const LoginForm = () => {
 							)}
 						</div>
 					</div>
+
+					{/* Password */}
 					<div className="space-y-2">
 						<Label htmlFor="password">Contraseña</Label>
 						<Input
@@ -100,6 +103,7 @@ export const LoginForm = () => {
 						</div>
 					</div>
 
+					{/* Button */}
 					<Button type="submit" className="w-full" disabled={loading}>
 						{loading ? (
 							'Iniciando sesión...'
@@ -118,7 +122,7 @@ export const LoginForm = () => {
 						</div>
 					)}
 
-					{/* divisor l ine */}
+					{/* New acount */}
 					<div className="flex items-center my-5">
 						<div className="flex-1 border-t border-gray-500"></div>
 						<div className="px-2">O</div>

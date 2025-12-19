@@ -119,7 +119,7 @@ export const ClientAppointmentForm = ({
 		<Card>
 			<CardContent>
 				<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-					{/* Selección de Servicio con Preview Visual */}
+					{/* Service Preview */}
 					<div className="space-y-4">
 						<Label className="text-lg font-semibold">1. Selecciona un servicio</Label>
 						<Controller
@@ -170,7 +170,7 @@ export const ClientAppointmentForm = ({
 					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-						{/* campo: Fecha (date) */}
+						{/* date */}
 						<div className="space-y-3">
 							<Label className="text-base">2. Selecciona el día</Label>
 							<Controller
@@ -194,7 +194,7 @@ export const ClientAppointmentForm = ({
 							)}
 						</div>
 
-						{/* campo: hora de inicio (startTime) */}
+						{/* startTime */}
 						<div className="space-y-3">
 							<Label className="text-base">3. Horarios disponibles</Label>
 							<Controller
@@ -237,7 +237,7 @@ export const ClientAppointmentForm = ({
 						</div>
 					</div>
 
-					{/* Notas adicionales */}
+					{/* notes */}
 					<div className="space-y-2">
 						<Label htmlFor="notes">¿Alguna indicación especial?</Label>
 						<Textarea
@@ -254,6 +254,8 @@ export const ClientAppointmentForm = ({
 							</div>
 						)}
 					</div>
+
+					{/* Button */}
 					<Button
 						type="submit"
 						className="w-full h-12 text-lg btn-primary"

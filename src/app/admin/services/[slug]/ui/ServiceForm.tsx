@@ -39,7 +39,6 @@ export const ServiceForm = ({ service, slug }: Props) => {
 		watch,
 		getValues,
 		setValue,
-		reset,
 	} = useForm<InputForm>({
 		defaultValues: { ...service, imagesRemove: [], files: [], images: service?.images },
 	});
@@ -146,6 +145,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 					className="grid gap-6 grid-cols-1 lg:grid-cols-2"
 				>
 					<div className="col-span-2 lg:col-span-1">
+						{/* name */}
 						<div className="space-y-2">
 							<Label htmlFor="name">Nombre servicio</Label>
 							<Input
@@ -163,6 +163,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							</div>
 						</div>
 
+						{/* description */}
 						<div className="space-y-2">
 							<Label htmlFor="description">Descripción del servicio</Label>
 							<Textarea
@@ -179,6 +180,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							</div>
 						</div>
 
+						{/* slug */}
 						<div className="space-y-2">
 							<Label htmlFor="slug">Slug servicio</Label>
 							<Input
@@ -198,6 +200,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							</div>
 						</div>
 
+						{/* price */}
 						<div className="space-y-2">
 							<Label htmlFor="price">Precio del servicio</Label>
 							<Input
@@ -215,6 +218,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							</div>
 						</div>
 
+						{/* duration time */}
 						<div className="space-y-2">
 							<Label htmlFor="duration">Duración del servicio (minutos)</Label>
 							<Input
@@ -279,6 +283,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							</div>
 						</div>
 
+						{/* check active */}
 						<div className="space-y-2 mt-5">
 							<Controller
 								name="isActive"
@@ -297,6 +302,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							<div className="h-5"></div>
 						</div>
 					</div>
+
 					{/* Sidebar */}
 					<div className="col-span-1">
 						{/* // ? Service Images */}
@@ -369,7 +375,7 @@ export const ServiceForm = ({ service, slug }: Props) => {
 							</div>
 						</div>
 
-						{/** // ? imagenes por cargar */}
+						{/** // ? image for load */}
 
 						<div
 							className={cn('mt-6 space-y-3', {
