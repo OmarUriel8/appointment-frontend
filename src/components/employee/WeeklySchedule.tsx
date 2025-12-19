@@ -22,7 +22,6 @@ import { daysOfWeekMap, EmployeeSchedule } from '@/interfaces';
 import { Checkbox } from '../ui/checkbox';
 import { createUpdateEmployeeSchedule } from '@/actions';
 import { toast } from 'sonner';
-import { redirect } from 'next/navigation';
 import { createHours } from '@/utils';
 
 const hours = createHours();

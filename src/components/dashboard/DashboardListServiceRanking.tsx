@@ -17,11 +17,13 @@ export const DashboardListServiceRanking = ({
 				<h3 className="font-semibold text-card-foreground">{title}</h3>
 			</div>
 
-			<div className="space-y-3">
+			<div className="space-y-4">
 				{services.length === 0 ? (
-					<p className="text-sm text-muted-foreground text-center py-4">
-						No hay datos suficientes este mes.
-					</p>
+					<div className="p-10">
+						<p className="text-sm text-muted-foreground text-center py-4">
+							No hay datos suficientes este mes.
+						</p>
+					</div>
 				) : (
 					services.slice(0, 5).map((service, index) => {
 						const percentage = (service.total / maxUsage) * 100;

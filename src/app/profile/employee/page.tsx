@@ -1,17 +1,20 @@
 export const revalidate = 0;
 
-import { getDashboardEmployee, getUserById } from '@/actions';
+import { getDashboardEmployee, getScheduleByEmployeeId, getUserById } from '@/actions';
 import {
 	Button,
 	DashboardCard,
 	DashboardListServiceRanking,
+	DashboradCommentsForEmployee,
 	FilterDashboard,
 	Title,
 } from '@/components';
 import { formatNumber, isValidDate } from '@/utils';
-import { Calendar, CalendarCheck, Mail, Phone, Star, User } from 'lucide-react';
+import { Calendar, Mail, MessageCircleMore, Phone, Star } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { WeekleySchedule } from './[term]/ui/WeekleySchedule';
+import { EmployeeSchedule } from '../../../interfaces/employee-schedule';
 
 export const metadata: Metadata = {
 	title: 'Mi perfil',
@@ -54,6 +57,10 @@ export default async function ProfileEmployeePage({ searchParams }: Props) {
 		user = await getUserById(userSession?.id ?? '');
 	}
 
+	let schedules: EmployeeSchedule[] = [];
+	if (user) {
+		schedules = (await getScheduleByEmployeeId(user.id)) ?? [];
+	}
 	return (
 		<div className="space-y-6 ">
 			<div className="flex lg:items-center flex-col lg:flex-row lg:justify-between">
@@ -92,26 +99,18 @@ export default async function ProfileEmployeePage({ searchParams }: Props) {
 							services={serviceMostUsed ?? []}
 							title="Servicos mas realizados"
 						/>
-						<div className="rounded-lg border border-border/40 bg-card p-6">
-							<h3 className="font-semibold text-card-foreground mb-4">
-								Comentarios de los clientes
-							</h3>
 
-							{reviewClient!.map((review) => (
-								<div key={review.id} className="mb-2">
-									<div className="grid grid-cols-8">
-										<p className="col-span-1 flex items-center gap-2">
-											<Star className="text-yellow-500 fill-yellow-400 h-8 w-8" />
-											<span className="font-semibold">{review.score}</span>
-										</p>
-										<p className="text-sm italic col-span-6">"{review.comments}"</p>
-									</div>
-								</div>
-							))}
-						</div>
+						<DashboradCommentsForEmployee
+							reviewClient={reviewClient ?? []}
+							title="Comentarios de los clientes"
+						/>
 					</div>
 				</>
 			)}
+
+			<div className="grid grid-cols-1 lg:grid-cols-2">
+				<WeekleySchedule schedules={schedules ?? []} title="Horario Semanal" />
+			</div>
 		</div>
 	);
 }

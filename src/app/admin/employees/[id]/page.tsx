@@ -6,7 +6,7 @@ import {
 	getUserById,
 } from '@/actions';
 import { CardUserInformation } from '@/components';
-import { WeeklySchedule } from '@/components/employee/WeeklyChedule';
+import { WeeklySchedule } from '@/components/employee/WeeklySchedule';
 import { createEmployeeSchedules } from '@/utils';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';

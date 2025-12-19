@@ -1,10 +1,10 @@
 export const revalidate = 604800; //7 dias
 
-import { getUserById } from '@/actions';
 import { Title } from '@/components';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { EmployeeForm } from './ui/EmployeeForm';
+import { getUserById } from '@/actions';
 
 export const metadata: Metadata = {
 	title: 'Editar Perfil',
