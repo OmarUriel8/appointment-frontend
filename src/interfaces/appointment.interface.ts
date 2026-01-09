@@ -34,6 +34,8 @@ export interface AppointmentResponse {
 	employee: User;
 	service: ApiService;
 	price: number;
+	durationMinutes: number;
+	nameService: string;
 }
 
 export interface Appointment {

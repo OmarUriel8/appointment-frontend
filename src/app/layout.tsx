@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 	},
 	description: 'Agenda tu cita fácil y rápido',
 	openGraph: {
-		images: ['/logo.jpg'],
+		images: [`${process.env.NEXT_URL_APP}/logo.jpg`],
 	},
 };
 

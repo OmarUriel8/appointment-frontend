@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Lista de servicios',
 		description: 'Lista de servicios disponibles',
-		images: ['/logo.jpg'],
+		images: [`${process.env.NEXT_URL_APP}/logo.jpg`],
 	},
 };
 

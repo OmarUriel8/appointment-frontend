@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Home',
 		description: 'Inicio AuraStudio',
-		images: ['/logo.jpg'],
+		images: [`${process.env.NEXT_URL_APP}/logo.jpg`],
 	},
 };
 
